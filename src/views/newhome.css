@@ -2020,3 +2020,33 @@
     line-height: 24px;
   }
 }
+
+body {
+  background-color: #1a202c; /* Dark background */
+  color: #e2e8f0; /* Light text color */
+}
+
+.home-container {
+  position: relative;
+}
+
+/* Adjust other text colors for dark mode */
+.home-heading,
+.home-caption,
+.home-text,
+.home-text01 {
+  color: #e2e8f0;
+}
+
+/* Adjust button styles for dark mode */
+.home-get-started,
+.home-get-started1 {
+  background-color: #4a5568;
+  color: #e2e8f0;
+}
+
+/* Add a subtle glow effect to buttons on hover */
+.home-get-started:hover,
+.home-get-started1:hover {
+  box-shadow: 0 0 15px rgba(74, 85, 104, 0.5);
+}

@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 import Navbar from '../components/navbar'
 import './newhome.css'
 import Footer from './Footer'
+import ThreeJSBackground from '../components/ThreeJSBackground'
 
 const NewHome = (props) => {
   return (
@@ -14,6 +15,7 @@ const NewHome = (props) => {
         <title>CredChain</title>
         <meta property="og:title" content="modern template" />
       </Helmet>
+      <ThreeJSBackground />
       <Navbar rootClassName="navbar-root-class-name"></Navbar>
       <section className="home-section">
         <div className="home-hero">
