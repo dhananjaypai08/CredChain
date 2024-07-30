@@ -52,9 +52,9 @@ genai.configure(api_key=api_key)
 model = genai.GenerativeModel('gemini-pro')
 
 cloudinary.config( 
-  cloud_name = os.environ.get("CLOUD_NAME"), 
-  api_key = os.environ.get("CLOUDINARY_API_KEY"), 
-  api_secret = os.environ.get("CLOUDINARY_API_SECRET")
+  cloud_name = 'dzvstpvlt', 
+  api_key = '188374828552585', 
+  api_secret = 'vMCoE46Phj4zK5k7Bd13NOHuW78'
 )
 
 skills = [
@@ -141,7 +141,7 @@ async def generate(request: Request):
     qr.make(fit=True)
     img = qr.make_image(fill_color="black", back_color="white")
     image_stream = BytesIO()
-    img.save(image_stream, format="PNG")
+    img.save(image_stream)
     image_stream.seek(0)
     result = cloudinary.uploader.upload(image_stream,public_id='qrcode')
     return result["secure_url"]
@@ -157,6 +157,7 @@ async def scanQR():
         ret, frame = cap.read()
 
         # Find and decode QR codes
+        if not frame: continue
         decoded_objects = decode(frame)
         
         # Display the image

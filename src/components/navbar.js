@@ -14,11 +14,13 @@ const Navbar = (props) => {
         src={props.brandingLogo}
         className="navbar-branding-logo"
       /> */}
-      <h1 className="navbar-text1">StockFlip</h1>
+      <h1 className="navbar-text1">CredChain</h1>
       <div className="navbar-nav-content">
         <div className="navbar-nav-links">
-          <a className="navbar-link nav-link" href="/">Home</a>
-          <a className="navbar-link nav-link" href="/swaptoken">Swap</a>
+          <a className="navbar-text" href="/portfolio">Portfolio</a>
+          <a className="navbar-text" href="/multiple">Multiple Issuance</a>
+          <a className="navbar-text" href="/reputation">Reputation</a>
+          <a className="navbar-text" href="/jobsavailable">Credentials Index</a>
         </div>
         <div className="get-started navbar-get-started">
           <a className="navbar-text" href="/">Get started</a>

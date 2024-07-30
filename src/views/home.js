@@ -190,7 +190,7 @@ const Home = (props) => {
       </Helmet>
       <header data-thq="thq-navbar" className="home-navbar">
         <span className="home-logo"><a  href="/">
-              DeCAT
+              CredChain
             </a></span>
         <div
           data-thq="thq-navbar-nav"
@@ -238,7 +238,7 @@ const Home = (props) => {
             className="home-nav1"
           >
             <div className="home-container1">
-              <span className="home-logo1">DeCAT</span>
+              <span className="home-logo1">CredChain</span>
               <div data-thq="thq-close-menu" className="home-menu-close">
                 <svg viewBox="0 0 1024 1024" className="home-icon02">
                   <path d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"></path>
@@ -292,8 +292,8 @@ const Home = (props) => {
       }
       </ul>}
       
-      {isConnected && <><label className='mint-btn'>Total DeCAT's Minting Volume: {totalmints}
-      </label> <label className='mint-btn'>Total DeCAT's Shared Volume: {total_endorsements}</label><br></br></>}
+      {isConnected && <><label className='mint-btn'>Total CredChain's Minting Volume: {totalmints}
+      </label> <label className='mint-btn'>Total CredChain's Shared Volume: {total_endorsements}</label><br></br></>}
       {isConnected && admin && <Loginsystem></Loginsystem>}
       <section className="home-hero">
       
@@ -313,10 +313,10 @@ const Home = (props) => {
       <section className="home-description">
       {isConnected && <div className="home-container">
       <p className="caption">
-          Your DeCAT Profile:
+          Your CredChain Profile:
       </p>
-      <label className='home-button6 button'>Total DeCAT Sharings allowed: {endorsementsAllowed}</label>
-        <label className='home-button6 button'>DeCAT SBT's minted to your account
+      <label className='home-button6 button'>Total CredChain Sharings allowed: {endorsementsAllowed}</label>
+        <label className='home-button6 button'>CredChain SBT's minted to your account
         </label>
         <ul><span className="margin-value">{fetched_nftdata && 
         nft_data.map((nft, index) => (
@@ -334,7 +334,7 @@ const Home = (props) => {
     </div>}
     
     {isConnected && <div className="home-container">
-      <label className='home-button6 button'>DeCAT SBT's shared to your account
+      <label className='home-button6 button'>CredChain SBT's shared to your account
       </label>
         <ul>{fetched_nftdata && 
         endorsed_mints.map((nft, index) => (
@@ -382,7 +382,7 @@ const Home = (props) => {
             <div className="home-main1">
               <div className="home-content02">
                 <h2 className="home-header02">
-                  DeCAT: Decentralized Identity verification and storage system
+                  CredChain: Decentralized Identity verification and storage system
                 </h2>
                 <p className="home-description03">
                   Ensuring the authenticity and uniqueness of certificates,

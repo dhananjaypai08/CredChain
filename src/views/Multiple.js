@@ -7,15 +7,13 @@ import './home.css'
 import Script from "dangerous-html/react";
 import { Helmet } from "react-helmet";
 import { useAppContext } from '../AppContext';
-// import { create as ipfsHttpClient } from "ipfs-http-client";
+import { create } from "ipfs-http-client";
 import Papa from 'papaparse';
 import abi from "../contracts/Autocrate.json";
 import lighthouse from '@lighthouse-web3/sdk';
 import Footer from './Footer';
 
-const projectId = '2WCbZ8YpmuPxUtM6PzbFOfY5k4B';
-const projectSecretKey = 'c8b676d8bfe769b19d88d8c77a9bd1e2';
-const authorization = "Basic " + btoa(projectId + ":" + projectSecretKey);
+
 const apiKey = "194b6492.3434e5ba7c13407fb862f5d85412b94d";
 
 const Multiple = () => {
@@ -71,13 +69,18 @@ const Multiple = () => {
         });
       }
     }
-
-    // const ipfs = ipfsHttpClient({
-    //     url: "https://ipfs.infura.io:5001/api/v0",
-    //     headers: {
-    //       authorization,
-    //     },
-    // });
+    const projectId = '2WCbZ8YpmuPxUtM6PzbFOfY5k4B';
+    const projectSecretKey = 'c8b676d8bfe769b19d88d8c77a9bd1e2';
+    const authorization = "Basic " + btoa(projectId + ":" + projectSecretKey);
+    const ipfs_client = create({
+      host: "ipfs.infura.io",
+      port: 5001,
+      protocol: "https",
+      apiPath: "/api/v0",
+      headers:{
+        authorization: authorization
+      },
+    });
 
     const call = async() => {
         const contractwithsigner = contract.connect(signer)
@@ -146,10 +149,12 @@ const Multiple = () => {
         let tokenuris = [];
         const image = file;
         console.log('uploading...');
-        // const result = await ipfs.add(image);
-        const result = await lighthouse.uploadBuffer(image, apiKey);
-        const image_uri = "https://gateway.lighthouse.storage/ipfs/"+result.data.Hash;
+        const result = await ipfs_client.add(image);
+        // const result = await lighthouse.uploadBuffer(image, apiKey);
+        print(result);
+        const image_uri = "https://infura.ipfs.io/ipfs/"+result.cid.toString();
         console.log('file uploaded');
+
         for(let i=0; i<nameArray.length; i++){
           const updatedJSON = `{
             "name": "${nameArray[i]}",
@@ -157,15 +162,15 @@ const Multiple = () => {
             "image": "${image_uri}"
           }`
           console.log(updatedJSON);
-          // const ans = await ipfs.add(updatedJSON);
-          const ans = await lighthouse.uploadText(updatedJSON, apiKey);
-          tokenuris.push(ans.data.Hash);
-          console.log('uploaded data', ans.data.Hash);
+          const ans = await ipfs_client.add(updatedJSON);
+          // const ans = await lighthouse.uploadText(updatedJSON, apiKey);
+          tokenuris.push(ans.cid.toString());
+          console.log('uploaded data', ans.cid.toString());
         }
         console.log(addressArray, tokenuris);
         const contractwithsigner = contract.connect(signer);
         console.log('connected with contract');
-        const resp = await contractwithsigner.mintBatch(addressArray, nameArray, descriptionArray, result.data.Hash, tokenuris);
+        const resp = await contractwithsigner.mintBatch(addressArray, nameArray, descriptionArray, result.cid.toString(), tokenuris);
         console.log(resp);
         setLoader(true);
         event.target.reset();
@@ -187,12 +192,12 @@ const Multiple = () => {
     <div>
         <div className="home-container">
           <Helmet>
-            <title>Autocrate</title>
+            <title>CredChain</title>
             <meta property="og:title" content="Dashboard" />
           </Helmet>
           <header data-thq="thq-navbar" className="home-navbar">
           <span className="home-logo"><a  href="/">
-              Autocrate
+              CredChain
             </a></span>
             <div
               data-thq="thq-navbar-nav"
@@ -217,7 +222,7 @@ const Multiple = () => {
             </div>
             <div data-thq="thq-navbar-btn-group" className="home-btn-group">
               
-              <button onClick={checkConnectionBeforeConnecting} className="button wallet-btn">
+              <button onClick={checkConnectionBeforeConnecting} className="home-button6 button">
                 {connectmsg}
               </button>
               
@@ -237,7 +242,7 @@ const Multiple = () => {
                 className="home-nav1"
               >
                 <div className="home-container1">
-                  <span className="home-logo1">Autocrate</span>
+                  <span className="home-logo1">CredChain</span>
                   <div data-thq="thq-close-menu" className="home-menu-close">
                     <svg viewBox="0 0 1024 1024" className="home-icon02">
                       <path d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"></path>
@@ -299,13 +304,13 @@ const Multiple = () => {
     <form onSubmit={SignIn}>
       
       <div className='EmptySpace'><label className='title-head' style={{color: "white"}}>Wallet Address   </label>
-      <input type="url" id="walletaddress" value={account ? account: ""} disabled style={{width: 300}} className="button"></input>
+      <input type="url" id="walletaddress" value={account ? account: ""} disabled style={{width: 300}} className="home-button6 button"></input>
       <br></br><br></br>
       
         <label className='title-head' style={{color: "white"}}>Enter Password</label>
-      <input type="password" id="password" placeholder="Enter Your Password" style={{width: 300}} className='home-button7 button'></input>
+      <input type="password" id="password" placeholder="Enter Your Password" style={{width: 300}} className='home-button6 button'></input>
       </div>
-      <button type="submit" className='home-button6 button'>Login</button>
+      <button type="submit" className='home-button6 button' style={{align: "right"}}>Login</button>
    </form>
   }
     
@@ -317,10 +322,10 @@ const Multiple = () => {
           {authorized == 1 &&
             <form onSubmit={SendSBT}>
               <label className='home-links' style={{color: "white"}}>Upload CSV file</label>
-              <input type="file" id="file" className='home-button7 button' onChange={handleCsvSelect}></input>
+              <input type="file" id="file" className='home-button6 button' onChange={handleCsvSelect}></input>
               <br></br><br></br>
               <label className='home-links' style={{color: "white"}}>Upload Image</label>
-              <input type="file" id="image" className='home-button7 button' onChange={handlePhotoSelect}></input>
+              <input type="file" id="image" className='home-button6 button' onChange={handlePhotoSelect}></input>
               <br></br><br></br>
               {/* <label className='home-links' style={{color: "white"}}>Upload CSV</label>
               <input type="file" id="image" className='home-button7 button' onChange={handleCsv}></input> */}

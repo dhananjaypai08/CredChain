@@ -11,6 +11,7 @@ import { Bar } from "react-chartjs-2";
 import Chart from 'chart.js/auto';
 import "./home.css";
 import { useAppContext } from "../AppContext";
+import Footer from "./Footer";
 
 const ReputationSystem = (props) => {
   const { state, setState } = useAppContext()
@@ -144,12 +145,12 @@ const ReputationSystem = (props) => {
         </div>
         <div data-thq="thq-navbar-btn-group" className="home-btn-group">
           
-          <button onClick={checkConnectionBeforeConnecting} className="button wallet-btn">
+          <button onClick={checkConnectionBeforeConnecting} className="home-button6 button">
             {connectmsg}
           </button>
         </div>
         <div data-thq="thq-burger-menu" className="home-burger-menu">
-          <button className="button home-button5">
+          <button className="home-button6 button">
             <svg viewBox="0 0 1024 1024" className="home-icon">
               <path d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"></path>
             </svg>
@@ -203,9 +204,9 @@ const ReputationSystem = (props) => {
         <h1 className="home-header">Please connect Wallet.</h1>
         </div>}
       </section>
-      {isConnected && <label className='mint-btn button'>Total CredChain's Volume: {totalmints}
+      {isConnected && <label className='home-button6 button'>Total CredChain's Volume: {totalmints}
       </label>}
-      {isConnected && <label className='home-button7 button'>Total SBT's shared to your Account: {curr_endorsements_received} <br></br>
+      {isConnected && <label className='home-button6 button'>Total SBT's shared to your Account: {curr_endorsements_received} <br></br>
       Total SBT's shared by you: {curr_endorsements_given} <br></br>
       Total Reputation Score: {curr_reputation} <br></br>
       </label>}

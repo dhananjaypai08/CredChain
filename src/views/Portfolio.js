@@ -33,7 +33,7 @@ const Portfolio = () => {
   const [casualInsights, setCasualInsights] = useState();
   const [CIflag, setCIflag] = useState(false);
 
-  const nftipfsAddress = "https://gateway.lighthouse.storage/ipfs/";
+  const nftipfsAddress = "https://ipfs.infura.io/ipfs/";
 
   useEffect(() => {
     const connectWallet = async () => {
@@ -136,7 +136,7 @@ const Portfolio = () => {
     
   const handleButtonClick = async(index) => {
     try {
-      const response = await axios.post('http://localhost:8082/generate_qrcode', nft_data[index], {
+      const response = await axios.post('http://localhost:8001/generate_qrcode', nft_data[index], {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -155,6 +155,24 @@ const Portfolio = () => {
       console.error('Error during POST request:', error.message);
     }
   };
+
+  const [verified, setVerified] = useState();
+  const [verifiedURI, setVerifiedURI] = useState();
+  const [verifiedData, setVerifiedData] = useState();
+  const Verify = async() => {
+    const response = await axios.post('http://localhost:8001/scanQR');
+    // console.log(response.data["verified"], response.data["uri"]);
+    if(response.data["verified"] == true){
+      // const getdata = await getVerificationData(response.data["image"]);
+      setVerifiedData(response.data);
+      setVerified(response.data["verified"]);
+      setVerifiedURI(response.data["tokenId"]);
+      console.log(response.data);
+    } else{
+      setVerified(response.data["verified"]);
+    }
+  };
+
   
   return (
     <div className="home-container">
@@ -164,7 +182,7 @@ const Portfolio = () => {
       </Helmet>
       <header data-thq="thq-navbar" className="home-navbar">
       <span className="home-logo"><a  href="/">
-              DeCAT
+              CredChain
             </a></span>
         <div
           data-thq="thq-navbar-nav"
@@ -207,7 +225,7 @@ const Portfolio = () => {
             className="home-nav1"
           >
             <div className="home-container1">
-              <span className="home-logo1">DeCAT</span>
+              <span className="home-logo1">CredChain</span>
               <div data-thq="thq-close-menu" className="home-menu-close">
                 <svg viewBox="0 0 1024 1024" className="home-icon02">
                   <path d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"></path>
@@ -242,25 +260,48 @@ const Portfolio = () => {
           </div>
         </div>
       </header>
-      <div className="home-hero">
-      <label className='home-button6 button'>Total DeCAT NFT's Minted to your account: {address_mints}<br></br>
-      Total DeCAT NFT's Shared to your wallet: {total_endorsed_mints}
-      </label>
+      <div className="home-hero home-divider-image">
+        <button className='home-button6 button' onClick={() => Verify()}>Verify Credentials/Proofs</button>
+        {verified!==undefined && <ul className="home-cards">
+      {verified==true &&
+      <div className="home-card">
+          <li className="home-paragraph">The NFT with tokenId: {verifiedURI} is <h3>verified</h3>
+          Name: {verifiedData["name"]} <br></br> Description: {verifiedData["description"]} <br></br> TokenId: {verifiedData["tokenId"]}
+          <img src={verifiedData["image"]} className="home-image05" ></img>
+          </li>
       </div>
-      <label className='home-button6 button'>Total NFT's Received from DeCAT ORG: {address_mints}
+      }
+      {verified==false &&
+      <div className="home-card" style={{width: 700}}>
+          <li className="home-paragraph">The NFT with Hash: {verifiedURI} is <h3>NOT Verified</h3>
+          </li>
+      </div>
+      }
+      </ul>}
+      <label className='home-button6 button'>
+        Total CredChain NFT's Minted to your account: {address_mints}
+      <br></br>Total CredChain NFT's Shared to your wallet: {total_endorsed_mints}
       </label>
       
-    <div class="home-container">
-      {qrcodegenerated && 
+      <label className='home-button6 button'>Total NFT's Received from CredChain ORG: {address_mints}
+      </label>
+      </div>
+    
+      {qrcodegenerated && <div class="home-container"> 
       <div className="home-card" style={{width: 700}}>
       <li className="home-paragraph">QRcode generated as verifiable proof
       <img src={qrcode} className="home-image06" ></img>
       </li>
       </div>
+      </div>
       }
-    </div>
+
+
+        
+      
+    
     <form onSubmit={getNFT}>
-      <div className="home-container" style={{width: 300}}>
+      <div  style={{width: 300}}>
         <label className='home-links' style={{color: "white"}}>Enter Wallet Address</label>
          <input type="text" id="walletaddress" style={{width: 300}} className="home-button6 button" required></input>
         
@@ -268,20 +309,20 @@ const Portfolio = () => {
       </div>
       {loader && <div><label className='home-links' style={{color: "white"}}>Fetching SBT...</label><div className="loader"></div></div>}
     </form>
-    
-      <section className="home-hero">
+  
 
     <div className="home-container">
     {CIflag &&
     <ul className="flex-container">
-          <div className="home-card SBT" style={{width: 700}}>
+          <div className="home-card" style={{width: 700}}>
           <li className="home-paragraph">{casualInsights}
           </li>
           <br></br>
           </div>
         </ul>}
-    <label className='home-button6 button'>DeCAT SBT's minted to your account
-    </label>
+    {CIflag &&
+    <label className='home-button6 button'>CredChain SBT's minted to your account
+    </label> &&
         <ul className="flex-container">{fetched_nftdata && 
         nft_data.map((nft, index) => (
         <>
@@ -294,12 +335,11 @@ const Portfolio = () => {
           </div>
         </>
         ))}
-        </ul>
-      
+        </ul>}
     </div>
 
     <div className="home-container">
-    <label className='home-button6 button'>DeCAT SBT's shared to your account
+    <label className='home-button6 button'>CredChain SBT's shared to your account
       </label>
         <ul className="flex-container">{fetched_nftdata && 
         endorsed_mints.map((nft,index) => (
@@ -315,16 +355,7 @@ const Portfolio = () => {
         ))}
         </ul>
     </div>
-
-      </section>
-      <section className="home-description">
-        <img
-          alt="image"
-          src="/hero-divider-1500w.png"
-          className="home-divider-image"
-        />
-        
-      </section>
+      
       
       <Footer></Footer>
       <div>
