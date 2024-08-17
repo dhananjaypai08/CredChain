@@ -2,12 +2,17 @@
 from web3 import AsyncWeb3
 import json
 # Fastapi imports
-from fastapi import FastAPI, Request, Response, Body
+from fastapi import FastAPI, Request, Response, Body, HTTPException
 from config import Node, Contract, Google
 import uvicorn
 from middleware.TimeMiddleware import TimeMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
+#langchain
+from langchain.llms import HuggingFaceHub
+from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
+from pydantic import BaseModel
 # other imports
 from loguru import logger
 from io import BytesIO
@@ -30,11 +35,12 @@ app = FastAPI()
 contract = Contract()
 node = Node()
 app.add_middleware(TimeMiddleware)
-Lighthouse_GATEWAY_URL = "https://gateway.lighthouse.storage/ipfs/"
+Lighthouse_GATEWAY_URL = "https://ipfs.io/ipfs/"
 
 origins = [
     "http://localhost",
-    "http://localhost:8082",
+    "http://localhost:8001",
+    "http://localhost:3000",
     Lighthouse_GATEWAY_URL,
     "*"
 ]
@@ -84,6 +90,18 @@ async def read_json():
     file.close()
     return data["abi"]
 
+llm = HuggingFaceHub(repo_id="google/flan-t5-base", model_kwargs={"temperature": 0.5, "max_length": 512})
+# Create a prompt template
+prompt_template = PromptTemplate(
+    input_variables=["question", "knowledge_base"],
+    template="Based on the following knowledge base: {knowledge_base}. This contains users wallet address mapped to list of their owned certificates.\n\nAnswer the following question: {question}"
+)
+# Create an LLM chain
+llm_chain = LLMChain(llm=llm, prompt=prompt_template)
+
+processed_knowledge_base = None
+
+
 @app.on_event("startup")
 async def startup():
     global w3
@@ -100,8 +118,27 @@ async def startup():
         metadata_shared = await contractwithsigner.functions.getTokenIdAccountSharing(account).call()
         data = metadata[:]+metadata_shared[:]
         knowledge_base[account].append(data)
-    knowledge_base = str(knowledge_base)
+    # knowledge_base = str(knowledge_base)
+    global processed_knowledge_base
+    processed_knowledge_base = preprocess_knowledge_base(knowledge_base)
     
+def preprocess_knowledge_base(knowledge_base):
+    processed_data = {}
+    for address, certificates in knowledge_base.items():
+        user_skills = []
+        for cert in certificates[0]:
+            skill = cert[0].lower()
+            if "python" in skill:
+                user_skills.append("Python")
+            elif "java" in skill:
+                user_skills.append("Java")
+            elif "c++" in skill:
+                user_skills.append("C++")
+            elif "web development" in skill:
+                user_skills.append("Web Development")
+            # Add more skill categories as needed
+        processed_data[address] = user_skills
+    return json.dumps(processed_data, indent=2)
     
 @app.get("/")
 async def home(id: str):
@@ -157,7 +194,7 @@ async def scanQR():
         ret, frame = cap.read()
 
         # Find and decode QR codes
-        if not frame: continue
+        if frame is None: continue
         decoded_objects = decode(frame)
         
         # Display the image
@@ -263,6 +300,17 @@ async def chat(query: str):
     preprocessed_query = f"Web3 data: {knowledge_base} | User query: {query}. Generate the text in plain text format without '*' and without new lines."
     response = model.generate_content(preprocessed_query)
     return response.text
+
+@app.post("/ask")
+async def ask(request: Request):
+    try:
+        body = await request.json()
+        query = body["query"]
+        print(query)
+        response = llm_chain.run(question=query, knowledge_base=processed_knowledge_base)
+        return {"answer": response}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/finetune")
 async def finetune():

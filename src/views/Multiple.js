@@ -88,7 +88,7 @@ const Multiple = () => {
         console.log(resp)
     } 
     const connectWallet = async () => {
-      const contractAddress = "0x8264a7B7d02ab5eF1e57d0ad10110686D79d8d46"//"0x816df2a69bB2D246B1ee5a4F2d1B3EbcB3aF7C85";//"0x61eFE56495356973B350508f793A50B7529FF978";
+      const contractAddress = abi.address;//"0x8264a7B7d02ab5eF1e57d0ad10110686D79d8d46"//"0x816df2a69bB2D246B1ee5a4F2d1B3EbcB3aF7C85";//"0x61eFE56495356973B350508f793A50B7529FF978";
       const contractAbi = abi.abi;
       try {
         const { ethereum } = window;
@@ -129,10 +129,11 @@ const Multiple = () => {
       const {signer} = state;
       const walletAddress = document.querySelector('#walletaddress').value;
       const password = document.querySelector('#password').value;
-      console.log(contract, password, walletAddress);
+      // console.log(contract, password, walletAddress);
       const contractwithsigner = contract.connect(signer);
       const resp = await contractwithsigner.getVal(walletAddress);
-      if(resp == password){
+
+      if(resp && password && resp == password){
           setAuth(1)
           const authenticated = true;
           setState({ provider, signer, contract, account, authenticated});
@@ -212,12 +213,14 @@ const Multiple = () => {
                 <a  href="/" className="home-button1 button-clean button">
               Home
             </a>
-            <a href="/multiple" className="home-button2 button-clean button">
-              Multiple Transaction
-            </a>
+            
             <a href="/portfolio" className="home-button2 button-clean button">
                     Portfolio
-                  </a>
+            </a>
+            <a href="/reputation" className="home-button2 button-clean button">
+              Reputation
+            </a>
+            
               </nav>
             </div>
             <div data-thq="thq-navbar-btn-group" className="home-btn-group">

@@ -57,6 +57,7 @@
 
 .button:hover {
   opacity: 0.5;
+  color:#999999;
 }
 
 .input,

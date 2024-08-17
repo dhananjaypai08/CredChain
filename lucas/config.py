@@ -13,7 +13,7 @@ class Contract:
     
 class Google:
     def __init__(self):
-        self.api_key = 'AIzaSyDQcvx7lKfxeVPZM8Nhpgvpdfmx7i_kSs4'#'AIzaSyB1exxpSae8kVFmR5M-NtVNrQeHrypaPqo'#'AIzaSyB9XmOWaeNpGjxrg9Sy1VxX2OEx-Icen6s'
+        self.api_key = 'AIzaSyC_CxKyCe0S62Fq1udGnJtNtbgkimfEkt0'#'AIzaSyB1exxpSae8kVFmR5M-NtVNrQeHrypaPqo'#'AIzaSyB9XmOWaeNpGjxrg9Sy1VxX2OEx-Icen6s'
         
 class Test:
     def __init__(self):

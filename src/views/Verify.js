@@ -75,7 +75,7 @@ const Verify = () => {
         <meta property="og:title" content="Dashboard" />
       </Helmet>
       <header data-thq="thq-navbar" className="home-navbar">
-        <span className="home-logo">DeCAT</span>
+        <span className="home-logo">CredChain</span>
         <div
           data-thq="thq-navbar-nav"
           data-role="Nav"
@@ -131,7 +131,7 @@ const Verify = () => {
             className="home-nav1"
           >
             <div className="home-container1">
-              <span className="home-logo1">DeCAT</span>
+              <span className="home-logo1">CredChain</span>
               <div data-thq="thq-close-menu" className="home-menu-close">
                 <svg viewBox="0 0 1024 1024" className="home-icon02">
                   <path d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"></path>
@@ -199,7 +199,7 @@ const Verify = () => {
                 shape the world into a better future.
               </p>
               <p className="home-paragraph1">
-                DeCAT is set to release on public blockchain Layer2. The first
+                CredChain is set to release on public blockchain Layer2. The first
                 working model is set to be deployed on Polygon mumbai testnet.
                 Why Polygon? Provides scalability enabling rollup mechanism
                 which plays a critical role in multibatch transactions.
@@ -281,7 +281,7 @@ const Verify = () => {
             <div className="home-main1">
               <div className="home-content02">
                 <h2 className="home-header02">
-                  DeCAT : provides digital and decentralized certification
+                  CredChain : provides digital and decentralized certification
                   authority
                 </h2>
                 <p className="home-description03">

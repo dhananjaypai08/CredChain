@@ -8,23 +8,21 @@ import './navbar.css'
 
 const Navbar = (props) => {
   return (
-    <header className={`navbar-navbar ${props.rootClassName} `}>
+    <header className={`${props.rootClassName} home-navbar`}>
       {/* <img
         alt="Planical7012"
         src={props.brandingLogo}
         className="navbar-branding-logo"
       /> */}
-      <h1 className="navbar-text1">CredChain</h1>
+      <button className="navbar-text1 home-button2 button-clean button">CredChain</button>
       <div className="navbar-nav-content">
         <div className="navbar-nav-links">
-          <a className="navbar-text" href="/portfolio">Portfolio</a>
-          <a className="navbar-text" href="/multiple">Multiple Issuance</a>
-          <a className="navbar-text" href="/reputation">Reputation</a>
-          <a className="navbar-text" href="/jobsavailable">Credentials Index</a>
+          <a className="navbar-text home-button2 button-clean button" href="/portfolio">Portfolio</a>
+          <a className="navbar-text home-button2 button-clean button" href="/multiple">Multiple Issuance</a>
+          <a className="navbar-text home-button2 button-clean button" href="/reputation">Reputation</a>
+          <a className="navbar-text home-button2 button-clean button" href="/jobsavailable">Credentials Index</a>
         </div>
-        <div className="get-started navbar-get-started">
-          <a className="navbar-text" href="/">Get started</a>
-        </div>
+        
         <div id="open-mobile-menu" className="navbar-hamburger get-started">
           <img
             alt={props.imageAlt}

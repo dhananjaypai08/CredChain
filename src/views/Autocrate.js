@@ -248,7 +248,7 @@ const Autocrate = () => {
             <div className="home-heading">
               <h1 className="home-header">Leveraging Modified Soul Bound Tokens</h1>
               <p className="home-caption">
-                Decentralized Certificate Authority - A Non Fungible Token based
+                CredChain - A Non Fungible Token based
                 Dapp for Certificate Authorization
               </p>
             </div>

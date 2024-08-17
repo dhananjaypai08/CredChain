@@ -2,13 +2,33 @@ import React from 'react'
 
 import Script from 'dangerous-html/react'
 import { Helmet } from 'react-helmet'
-
+import { useState } from 'react'
+import axios from 'axios'
 import Navbar from '../components/navbar'
 import './newhome.css'
 import Footer from './Footer'
 import ThreeJSBackground from '../components/ThreeJSBackground'
 
 const NewHome = (props) => {
+
+  const [verified, setVerified] = useState();
+  const [verifiedURI, setVerifiedURI] = useState();
+  const [verifiedData, setVerifiedData] = useState();
+
+  const Verify = async() => {
+    const response = await axios.post('http://localhost:8001/scanQR');
+    // console.log(response.data["verified"], response.data["uri"]);
+    if(response.data["verified"] == true){
+      // const getdata = await getVerificationData(response.data["image"]);
+      setVerifiedData(response.data);
+      setVerified(response.data["verified"]);
+      setVerifiedURI(response.data["tokenId"]);
+      console.log(response.data);
+    } else{
+      setVerified(response.data["verified"]);
+    }
+  };
+
   return (
     <div className="home-container">
       <Helmet>
@@ -23,18 +43,18 @@ const NewHome = (props) => {
             <main className="home-main">
               <header className="home-header">
                 <h1 className="home-heading">
-                  Fastest Way to buy Stocks using crypto
+                  We help users upskill in the right direction
                 </h1>
                 <span className="home-caption">
-                  Buy Real world assets using Crypto. Cross-chain support for easy onboarding
+                  Issue, Verify, Upskill and get Visibility
                 </span>
               </header>
               <div className="home-buttons">
                 <div className="home-get-started button">
-                  <span className="home-text">Get started</span>
+                  <a className="home-text" href="/multiple">Organization/Admin</a>
                 </div>
-                <div className="home-get-started1 button">
-                  <span className="home-text01">View features</span>
+                <div className="home-get-started button">
+                  <a className="home-text" href="/reputation">Users</a>
                 </div>
               </div>
             </main>
@@ -61,10 +81,12 @@ const NewHome = (props) => {
               </label> */}
             </div>
           </div>
+                
           <div className="home-image03">
+          
             <img
               alt="image"
-              src="https://tse1.mm.bing.net/th?id=OIP.GlXB41c8vHCJEAWbhq7rYwHaEK&pid=Api"
+              src="https://tse1.mm.bing.net/th?id=OIP.qnHDFJR7ou9kFrqFBPvYJwHaF6&pid=Api"
               className="home-image04"
             />
           </div>
@@ -78,7 +100,23 @@ const NewHome = (props) => {
         </div>
       </section>
       <section>
-        
+      <button className='home-button6 button' onClick={() => Verify()}>Verify Credentials/Proofs</button>
+      {verified!==undefined && <ul className="home-cards">
+      {verified==true &&
+      <div className="home-card">
+          <li className="home-paragraph">The NFT with tokenId: {verifiedURI} is <h3>verified</h3>
+          Name: {verifiedData["name"]} <br></br> Description: {verifiedData["description"]} <br></br> TokenId: {verifiedData["tokenId"]}
+          <img src={verifiedData["image"]} className="home-image05" ></img>
+          </li>
+      </div>
+      }
+      {verified==false &&
+      <div className="home-card" style={{width: 700}}>
+          <li className="home-paragraph">The NFT with Hash: {verifiedURI} is <h3>NOT Verified</h3>
+          </li>
+      </div>
+      }
+      </ul>}
       </section>
       <section>
         

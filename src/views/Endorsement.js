@@ -28,7 +28,7 @@ const Endorsement = () => {
 
   useEffect(() => {
     const connectWallet = async () => {
-      const contractAddress = "0x798dEd76b55aC40bDBc607BE0038Becf7074A26B";//"0x581aF0F29670d8Ca269A6deF3c513c953b504796";
+      const contractAddress = abi.address;//"0x798dEd76b55aC40bDBc607BE0038Becf7074A26B";//"0x581aF0F29670d8Ca269A6deF3c513c953b504796";
       const contractAbi = abi.abi;
       try {
         const { ethereum } = window;
@@ -103,7 +103,7 @@ const Endorsement = () => {
         <meta property="og:title" content="Dashboard" />
       </Helmet>
       <header data-thq="thq-navbar" className="home-navbar">
-        <span className="home-logo">DeCAT</span>
+        <span className="home-logo">CredChain</span>
         <div
           data-thq="thq-navbar-nav"
           data-role="Nav"
@@ -115,7 +115,7 @@ const Endorsement = () => {
             className="home-nav"
           >
             <button className="home-button button-clean button">About</button>
-            <a  href="/decat" className="home-button1 button-clean button">
+            <a  href="/CredChain" className="home-button1 button-clean button">
               Single Transaction
             </a>
             <a href="/multiple" className="home-button2 button-clean button">
@@ -164,7 +164,7 @@ const Endorsement = () => {
             className="home-nav1"
           >
             <div className="home-container1">
-              <span className="home-logo1">DeCAT</span>
+              <span className="home-logo1">CredChain</span>
               <div data-thq="thq-close-menu" className="home-menu-close">
                 <svg viewBox="0 0 1024 1024" className="home-icon02">
                   <path d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"></path>
@@ -177,7 +177,7 @@ const Endorsement = () => {
               className="home-nav2"
             >
               <span className="home-text">About</span>
-              <a  href="/decat" className="home-button1 button-clean button">
+              <a  href="/CredChain" className="home-button1 button-clean button">
               Single Transaction
             </a>
             <a href="/multiple" className="home-button2 button-clean button">
@@ -205,7 +205,7 @@ const Endorsement = () => {
         </div>
       </header>
       <div className="home-hero">
-      <label className='home-button7 button'>Total DeCAT NFT's Minted: {address_mints}
+      <label className='home-button7 button'>Total CredChain NFT's Minted: {address_mints}
       </label>
       </div>
       
@@ -226,7 +226,7 @@ const Endorsement = () => {
         </div>
 
     <div class="home-hero">
-      <label className='home-button7 button'>Total NFT's Received from DeCAT: {address_mints}
+      <label className='home-button7 button'>Total NFT's Received from CredChain: {address_mints}
       </label>
     </div>
 
@@ -270,7 +270,7 @@ const Endorsement = () => {
                 shape the world into a better future.
               </p>
               <p className="home-paragraph1">
-                DeCAT is set to release on public blockchain Layer2. The first
+                CredChain is set to release on public blockchain Layer2. The first
                 working model is set to be deployed on Polygon mumbai testnet.
                 Why Polygon? Provides scalability enabling rollup mechanism
                 which plays a critical role in multibatch transactions.
@@ -324,7 +324,7 @@ const Endorsement = () => {
             <div className="home-main1">
               <div className="home-content02">
                 <h2 className="home-header02">
-                  DeCAT : provides digital and decentralized certification
+                  CredChain : provides digital and decentralized certification
                   authority
                 </h2>
                 <p className="home-description03">
