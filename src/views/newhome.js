@@ -154,14 +154,9 @@ const NewHome = (props) => {
       </section>
       
       <section className="home-section18">
-        <main className="home-content5">
-          
-        </main>
+        Connecting worlds
       </section>
       <Footer></Footer>
-      <div>
-        
-      </div>
     </div>
   )
 }

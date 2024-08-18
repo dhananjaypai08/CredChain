@@ -11,6 +11,7 @@ import { ethers } from "ethers";
 
 import "./home.css";
 import Footer from "./Footer";
+import AI from "./AI";
 // import { useAppContext } from "../AppContext";
 // import { CovalentClient } from "@covalenthq/client-sdk";
 
@@ -32,7 +33,7 @@ const Portfolio = () => {
   const [selectedIndex, setIndex] = useState("");
   const [casualInsights, setCasualInsights] = useState();
   const [CIflag, setCIflag] = useState(false);
-
+  const [AIcomponent, setAIcomponent] = useState(0);
   const nftipfsAddress = "https://ipfs.infura.io/ipfs/";
 
   useEffect(() => {
@@ -296,7 +297,10 @@ const Portfolio = () => {
       }
 
 
-        
+    {/* <div className="home-container">
+      <button className='home-button6 button' onClick={() => {setAIcomponent(1-AIcomponent)}}>chatWithAI</button>
+      {AIcomponent == 1 && <AI></AI>}
+    </div>     */}
       
     
     <form onSubmit={getNFT}>

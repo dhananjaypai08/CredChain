@@ -4,12 +4,12 @@ const Footer = () => {
         <footer className="home-footer">
         <div className="home-main5">
           <div className="home-branding">
-            <div className="home-heading10">
+            {/* <div className="home-heading10">
               <h2 className="home-logo2">CredChain</h2>
               <p className="home-caption17">
                 CredChain is originally built for simplifying the process of issuance, verification and upskilling in the right direction
               </p>
-            </div>
+            </div> */}
             <div className="home-socials1">
               <a
                 href="https://twitter.com/dhananj10181396"

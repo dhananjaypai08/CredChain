@@ -13,6 +13,9 @@ from langchain.llms import HuggingFaceHub
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from pydantic import BaseModel
+#pandasai
+from pandasai import Agent
+import pandas as pd
 # other imports
 from loguru import logger
 from io import BytesIO
@@ -100,6 +103,7 @@ prompt_template = PromptTemplate(
 llm_chain = LLMChain(llm=llm, prompt=prompt_template)
 
 processed_knowledge_base = None
+AGENT_DATA = {}
 
 
 @app.on_event("startup")
@@ -124,20 +128,37 @@ async def startup():
     
 def preprocess_knowledge_base(knowledge_base):
     processed_data = {}
+    global AGENT_DATA
+    user_lst, python_lst, java_lst, cpp_lst, webdev_lst, ai_lst = [], [], [], [], [], []
     for address, certificates in knowledge_base.items():
         user_skills = []
+        python, java, cpp, webdev, ai = 0, 0, 0, 0, 0
         for cert in certificates[0]:
             skill = cert[0].lower()
             if "python" in skill:
                 user_skills.append("Python")
+                python += 1
             elif "java" in skill:
                 user_skills.append("Java")
+                java += 1
             elif "c++" in skill:
                 user_skills.append("C++")
+                cpp += 1
             elif "web development" in skill:
                 user_skills.append("Web Development")
-            # Add more skill categories as needed
+                webdev += 1
+            elif "ai" in skill:
+                user_skills.append("AI")
+                ai += 1
         processed_data[address] = user_skills
+        user_lst.append(address)
+        python_lst.append(python)
+        java_lst.append(java)
+        cpp_lst.append(cpp)
+        webdev_lst.append(webdev)
+        ai_lst.append(ai)
+    AGENT_DATA['User or Wallet Address'] = user_lst
+    AGENT_DATA["Python"], AGENT_DATA["Java"], AGENT_DATA["C++"], AGENT_DATA["Web Development"], AGENT_DATA["AI"] = python_lst, java_lst, cpp_lst, webdev_lst, ai_lst
     return json.dumps(processed_data, indent=2)
     
 @app.get("/")
@@ -311,13 +332,26 @@ async def ask(request: Request):
         return {"answer": response}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/finetune")
-async def finetune():
-    dataset = """{{"prompt": "what is ai", "completion": "ai is also called artificial intelligence. where machines can think on their own"},{"prompt": "<prompt text>", "completion": "<ideal generated text>"},{"prompt": "<prompt text>", "completion": "<ideal generated text>"}}"""
-    # dataset = str(dataset)
-    response = model.generate_content(f"Consider this query just for fine tuning. The dataset here is: {dataset}. I don't want any response in return.")
-    return response.text
+    
+@app.post("/chatwithai")
+async def chatwithai(request: Request):
+    body = await request.json()
+    query = body["query"]
+    resp = plotData(query)
+    return "Plotted"
+    
+def plotData(query: str):
+    print(AGENT_DATA)
+    data = pd.DataFrame(AGENT_DATA)
+    agent = Agent(data)
+    response = agent.chat(query)
+    return response
+# @app.get("/finetune")
+# async def finetune():
+#     dataset = """{{"prompt": "what is ai", "completion": "ai is also called artificial intelligence. where machines can think on their own"},{"prompt": "<prompt text>", "completion": "<ideal generated text>"},{"prompt": "<prompt text>", "completion": "<ideal generated text>"}}"""
+#     # dataset = str(dataset)
+#     response = model.generate_content(f"Consider this query just for fine tuning. The dataset here is: {dataset}. I don't want any response in return.")
+#     return response.text
         
 
 if __name__ == "__main__":

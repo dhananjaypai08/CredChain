@@ -1302,12 +1302,12 @@
   justify-content: center;
 }
 .home-section18 {
-  gap: var(--dl-space-space-fiveunits);
   flex: 1;
   width: 100%;
   display: flex;
   align-items: center;
-  padding-top: 120px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   padding-left: var(--dl-space-space-oneandhalfunits);
   padding-right: var(--dl-space-space-oneandhalfunits);
   flex-direction: column;
