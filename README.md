@@ -1,6 +1,20 @@
 # CredChain
   - Decentralized Certification Authority and Reputation system for Revolutionizing job market
 
+## Demo Link:
+[https://www.youtube.com/watch?v=reynJr34Qrw](https://www.youtube.com/watch?v=reynJr34Qrw)
+
+## Setup
+- Clone the repo
+- `cd CredChain`
+- `npm run start`
+- create and activate python virtual environment using venv module
+- `cd lucas`
+- `pip instal -r requirements.txt`
+- configure your .env in lucas/ by looking at the .env.example file
+- `python main.py`
+Done!
+
 ## Aim
 
 To enable individuals to build their own reputation onchain and also help hiring managers to shortlist or select candidates via the EIP5192 Tokens.
