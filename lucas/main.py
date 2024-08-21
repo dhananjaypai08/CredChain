@@ -17,6 +17,7 @@ from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
 #pandasai
 from pandasai import Agent
 import pandas as pd
+import matplotlib.pyplot as plt
 # other imports
 # from loguru import logger
 from io import BytesIO
@@ -383,7 +384,11 @@ async def chatwithai(request: Request):
     query += f". Provide the answer in {language} language"
     tokens = query.split()
     if "graph" in tokens or "chart" in tokens or "plot" in tokens or "show" in tokens:
-        plotData(query)
+        data = pd.DataFrame(AGENT_DATA)
+        agent = Agent(data)
+        fig = agent.chat(query)
+        plt.show(fig)
+        plt.close(fig)
         return "Plotted"
     elif "ping" in tokens or "mail" in tokens:
         if "ping" in tokens:
@@ -406,10 +411,7 @@ async def chatwithai(request: Request):
         return getChat(preprocessed_query)
     
     
-def plotData(query: str):
-    data = pd.DataFrame(AGENT_DATA)
-    agent = Agent(data)
-    agent.chat(query)
+
     
 # @app.get("/finetune")
 # async def finetune():

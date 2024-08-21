@@ -88,14 +88,14 @@ const NewHome = (props) => {
               </label> */}
             </div>
           </div>
-          {/* <div className="home-image03">
+          <div className="home-image03">
           
             <img
               alt="image"
               src="https://tse1.mm.bing.net/th?id=OIP.qnHDFJR7ou9kFrqFBPvYJwHaF6&pid=Api"
-              className="home-image04"
+              className="home-image04" style={{borderRadius: '50%'}}
             />
-          </div> */}
+          </div>
           
         </div>
       </section>
