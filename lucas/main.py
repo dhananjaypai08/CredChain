@@ -7,17 +7,16 @@ from config import Node, Contract, Google
 import uvicorn
 from middleware.TimeMiddleware import TimeMiddleware
 from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
 #langchain
-from langchain.llms import HuggingFaceHub
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
-from pydantic import BaseModel
+# from langchain.llms import HuggingFaceHub
+# from langchain.prompts import PromptTemplate
+# from langchain.chains import LLMChain
+# from pydantic import BaseModel
 #pandasai
 from pandasai import Agent
 import pandas as pd
 # other imports
-from loguru import logger
+# from loguru import logger
 from io import BytesIO
 import qrcode
 import cv2
@@ -29,12 +28,14 @@ import re
 from collections import defaultdict
 import os
 from dotenv import load_dotenv
+# import InHouseAI
 
 load_dotenv()
 
 w3 = None
 contractwithsigner = None
 app = FastAPI()
+# app.include_router(InHouseAI.router, prefix="/inhouse")
 contract = Contract()
 node = Node()
 app.add_middleware(TimeMiddleware)
@@ -93,27 +94,29 @@ async def read_json():
     file.close()
     return data["abi"]
 
-llm = HuggingFaceHub(repo_id="google/flan-t5-base", model_kwargs={"temperature": 0.5, "max_length": 512})
-# Create a prompt template
-prompt_template = PromptTemplate(
-    input_variables=["question", "knowledge_base"],
-    template="Based on the following knowledge base: {knowledge_base}. This contains users wallet address mapped to list of their owned certificates.\n\nAnswer the following question: {question}"
-)
+# llm = HuggingFaceHub(repo_id="google/flan-t5-base", model_kwargs={"temperature": 0.5, "max_length": 512})
+# # Create a prompt template
+# prompt_template = PromptTemplate(
+#     input_variables=["question", "knowledge_base"],
+#     template="Based on the following knowledge base: {knowledge_base}. This contains users wallet address mapped to list of their owned certificates.\n\nAnswer the following question: {question}"
+# )
 # Create an LLM chain
-llm_chain = LLMChain(llm=llm, prompt=prompt_template)
+# llm_chain = LLMChain(llm=llm, prompt=prompt_template)
 
 processed_knowledge_base = None
 AGENT_DATA = {}
 
 
 @app.on_event("startup")
-async def startup():
+async def lifespan():
     global w3
     w3 = AsyncWeb3(AsyncWeb3.AsyncHTTPProvider(node.url))
     contract_abi = await read_json()
     global contractwithsigner
+    print(contract.address)
     contractwithsigner = w3.eth.contract(address=contract.address, abi=contract_abi)
-    logger.info(f"Connected with smart contract with address {contract.address}")
+    # print(f"Connected with smart contract with address {contract.address}")
+    print(f"Connected with smart contract with address {contract.address}")
     accounts = await contractwithsigner.functions.getAccounts().call()
     global knowledge_base
     print(accounts)
@@ -125,6 +128,8 @@ async def startup():
     # knowledge_base = str(knowledge_base)
     global processed_knowledge_base
     processed_knowledge_base = preprocess_knowledge_base(knowledge_base)
+    # yield
+    print("Shutting down...")
     
 def preprocess_knowledge_base(knowledge_base):
     processed_data = {}
@@ -164,24 +169,24 @@ def preprocess_knowledge_base(knowledge_base):
 @app.get("/")
 async def home(id: str):
     val = await contractwithsigner.functions.getTotalMints().call()
-    logger.info(f"Total DeCAT Volume: {val}")
+    print(f"Total DeCAT Volume: {val}")
     tokenIds = await contractwithsigner.functions.getTokenIdAccount(id).call()
     ans = []
     for tokenId in tokenIds:
         tokenURI = await contractwithsigner.functions.tokenURI(tokenId[3]).call()
         ans.append({"tokenId": tokenId[3], "tokenURI": Lighthouse_GATEWAY_URL+tokenURI})
-    logger.success(f"Fetched SBT data for wallet address: {id}")
+    print(f"Fetched SBT data for wallet address: {id}")
     return ans
 
 @app.get("/endorsements_received")
 async def home(id: str):
     ids = await contractwithsigner.functions.getTokenIdAccountEndorsing(id).call()
-    logger.info("Data Retrieved")
+    print("Data Retrieved")
     ans = []
     for tokenId in ids:
         tokenURI = await contractwithsigner.functions.tokenURI(tokenId[3]).call()
         ans.append({"tokenId": tokenId[3], "tokenURI": Lighthouse_GATEWAY_URL+tokenURI})
-    logger.success(f"Fetched endorsing data for wallet address: {tokenId[3]}")
+    print(f"Fetched endorsing data for wallet address: {tokenId[3]}")
     return ans
 
 @app.post("/generate_qrcode")
@@ -229,7 +234,7 @@ async def scanQR():
             typeofSBT = dict_data["name"]
             address = dict_data["walletAddress"]
             tokenId = dict_data["tokenId"]
-            logger.info(f"Fetched type: {typeofSBT}, address: {address}, TokenId: {str(tokenId)}")
+            print(f"Fetched type: {typeofSBT}, address: {address}, TokenId: {str(tokenId)}")
             flg = 0
             if flg == 0:
                 tokenIds = await contractwithsigner.functions.getTokenIdAccount(address).call()
@@ -319,33 +324,42 @@ async def getAlljobs():
 @app.get("/chat")
 async def chat(query: str):
     preprocessed_query = f"Web3 data: {knowledge_base} | User query: {query}. Generate the text in plain text format without '*' and without new lines."
-    response = model.generate_content(preprocessed_query)
+    return getChat(preprocessed_query)
+
+def getChat(query:str):
+    response = model.generate_content(query)
     return response.text
 
-@app.post("/ask")
-async def ask(request: Request):
-    try:
-        body = await request.json()
-        query = body["query"]
-        print(query)
-        response = llm_chain.run(question=query, knowledge_base=processed_knowledge_base)
-        return {"answer": response}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+# @app.post("/ask")
+# async def ask(request: Request):
+#     try:
+#         body = await request.json()
+#         query = body["query"]
+#         print(query)
+#         response = llm_chain.run(question=query, knowledge_base=processed_knowledge_base)
+#         return {"answer": response}
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
     
 @app.post("/chatwithai")
 async def chatwithai(request: Request):
     body = await request.json()
-    query = body["query"]
-    resp = plotData(query)
-    return "Plotted"
+    query = body["query"].lower()
+    tokens = query.split()
+    if "graph" in tokens or "chart" in tokens or "plot" in tokens or "show" in tokens:
+        plotData(query)
+        return "Plotted"
+    else:
+        print(AGENT_DATA)
+        preprocessed_query = f"Web3 data: {AGENT_DATA} | User query: {query}. Give the links of courses from different sources. For ex: Udemy/Coursers course on that particular skillset he needs to upskill himself in and provide a concrete reasoning as to why he needs to upskill in that field. The wallet address in the query should match any one in the 'User or Wallet Address' field in the dictionary mapping. For ex: Wallet Address in the list at index 1 means that the count of certificates of user in python is the count at 'Python[1]' in the data.Generate the text in plain text format without '*' and without new lines."
+        return getChat(preprocessed_query)
+    
     
 def plotData(query: str):
-    print(AGENT_DATA)
     data = pd.DataFrame(AGENT_DATA)
     agent = Agent(data)
-    response = agent.chat(query)
-    return response
+    agent.chat(query)
+    
 # @app.get("/finetune")
 # async def finetune():
 #     dataset = """{{"prompt": "what is ai", "completion": "ai is also called artificial intelligence. where machines can think on their own"},{"prompt": "<prompt text>", "completion": "<ideal generated text>"},{"prompt": "<prompt text>", "completion": "<ideal generated text>"}}"""

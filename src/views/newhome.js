@@ -56,6 +56,9 @@ const NewHome = (props) => {
                 <div className="home-get-started button">
                   <a className="home-text" href="/reputation">Users</a>
                 </div>
+                <div className="home-get-started button">
+                  <a className="home-text" href="/chatwithai">Chat With AI</a>
+                </div>
               </div>
             </main>
             <div className="home-highlight">

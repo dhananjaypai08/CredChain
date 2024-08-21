@@ -34,7 +34,7 @@ const Portfolio = () => {
   const [casualInsights, setCasualInsights] = useState();
   const [CIflag, setCIflag] = useState(false);
   const [AIcomponent, setAIcomponent] = useState(0);
-  const nftipfsAddress = "https://ipfs.infura.io/ipfs/";
+  const nftipfsAddress = "https://skywalker.infura-ipfs.io/ipfs/";
 
   useEffect(() => {
     const connectWallet = async () => {

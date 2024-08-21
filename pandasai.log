@@ -5462,3 +5462,2575 @@ plt.show()
 pandasai.exceptions.NoResultFoundError: No result returned
 
 2024-08-18 02:45:26 [ERROR] Pipeline failed on step 6: No result returned
+2024-08-18 18:00:19 [INFO] Question: Plot me a graph for diversification of each user wallet address 
+2024-08-18 18:00:20 [INFO] Running PandasAI with bamboo_llm LLM...
+2024-08-18 18:00:20 [INFO] Prompt ID: 05b13e8e-9a4b-4d4d-b6f8-38fa748b0be4
+2024-08-18 18:00:20 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-08-18 18:00:20 [INFO] Executing Step 0: ValidatePipelineInput
+2024-08-18 18:00:20 [INFO] Executing Step 1: CacheLookup
+2024-08-18 18:00:20 [INFO] Executing Step 2: PromptGeneration
+2024-08-18 18:00:22 [INFO] Querying without using training data.
+2024-08-18 18:00:22 [INFO] Querying without using training docs.
+2024-08-18 18:00:22 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,7,1,7,8,0
+0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee,0,0,0,0,2
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,1,10,9,9,1
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ Plot me a graph for diversification of each user wallet address 
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-08-18 18:00:22 [INFO] Executing Step 3: CodeGenerator
+2024-08-18 18:00:28 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:00:28 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Data
+data = {
+    "User or Wallet Address": ["0xFFc206f3779CdeBc242220Af294c336a00AD4C5C", "0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee", "0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D"],
+    "Python": [7, 0, 1],
+    "Java": [1, 0, 10],
+    "C++": [7, 0, 9],
+    "Web Development": [8, 0, 9],
+    "AI": [0, 2, 1]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Plotting
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.plot(df.columns[1:], df.iloc[i, 1:], marker='o', label=df.iloc[i, 0])
+
+plt.xlabel('Technologies')
+plt.ylabel('Diversification')
+plt.title('Diversification of Each User Wallet Address')
+plt.legend()
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+
+# Save the plot
+plt.savefig("diversification_plot.png")
+
+# Declare result var
+result = {"type": "plot", "value": "diversification_plot.png"}
+            ```
+            
+2024-08-18 18:00:28 [INFO] Executing Step 4: CachePopulation
+2024-08-18 18:00:28 [INFO] Executing Step 5: CodeCleaning
+2024-08-18 18:00:28 [INFO] Saving charts to C:\Users\dhana\coding\Personal Projects\DeCATv\exports\charts\temp_chart.png
+2024-08-18 18:00:28 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D'], 'Python': [7, 0, 1], 'Java': [1, 0, 10], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [0, 2, 1]}
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.plot(df.columns[1:], df.iloc[i, 1:], marker='o', label=df.iloc[i, 0])
+plt.xlabel('Technologies')
+plt.ylabel('Diversification')
+plt.title('Diversification of Each User Wallet Address')
+plt.legend()
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+        ```
+2024-08-18 18:00:28 [INFO] Executing Step 6: CodeExecution
+2024-08-18 18:00:30 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-08-18 18:00:30 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-08-18 18:00:30 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:00:30 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:00:30 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,7,1,7,8,0
+0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee,0,0,0,0,2
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,1,10,9,9,1
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot me a graph for diversification of each user wallet address 
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D'], 'Python': [7, 0, 1], 'Java': [1, 0, 10], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [0, 2, 1]}
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.plot(df.columns[1:], df.iloc[i, 1:], marker='o', label=df.iloc[i, 0])
+plt.xlabel('Technologies')
+plt.ylabel('Diversification')
+plt.title('Diversification of Each User Wallet Address')
+plt.legend()
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:00:30 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:00:35 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:00:35 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D'], 'Python': [7, 0, 1], 'Java': [1, 0, 10], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [0, 2, 1]}
+df = pd.DataFrame(data)
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.plot(df.columns[1:], df.iloc[i, 1:], marker='o', label=df.iloc[i, 0])
+plt.xlabel('Technologies')
+plt.ylabel('Diversification')
+plt.title('Diversification of Each User Wallet Address')
+plt.legend()
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+            ```
+            
+2024-08-18 18:00:35 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:00:36 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D'], 'Python': [7, 0, 1], 'Java': [1, 0, 10], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [0, 2, 1]}
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.plot(df.columns[1:], df.iloc[i, 1:], marker='o', label=df.iloc[i, 0])
+plt.xlabel('Technologies')
+plt.ylabel('Diversification')
+plt.title('Diversification of Each User Wallet Address')
+plt.legend()
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+        ```
+2024-08-18 18:00:49 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-08-18 18:00:49 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-08-18 18:00:49 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:00:49 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:00:49 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,7,1,7,8,0
+0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee,0,0,0,0,2
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,1,10,9,9,1
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot me a graph for diversification of each user wallet address 
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D'], 'Python': [7, 0, 1], 'Java': [1, 0, 10], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [0, 2, 1]}
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.plot(df.columns[1:], df.iloc[i, 1:], marker='o', label=df.iloc[i, 0])
+plt.xlabel('Technologies')
+plt.ylabel('Diversification')
+plt.title('Diversification of Each User Wallet Address')
+plt.legend()
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:00:49 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:00:54 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:00:54 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'], 
+        'Python': [1, 0, 7], 'Java': [10, 0, 1], 'C++': [9, 0, 7], 'Web Development': [9, 0, 8], 'AI': [1, 2, 0]}
+
+df = pd.DataFrame(data)
+
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.plot(df.columns[1:], df.iloc[i, 1:], marker='o', label=df.iloc[i, 0])
+
+plt.xlabel('Technologies')
+plt.ylabel('Diversification')
+plt.title('Diversification of Each User Wallet Address')
+plt.legend()
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+            ```
+            
+2024-08-18 18:00:54 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:00:54 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'], 'Python': [1, 0, 7], 'Java': [10, 0, 1], 'C++': [9, 0, 7], 'Web Development': [9, 0, 8], 'AI': [1, 2, 0]}
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.plot(df.columns[1:], df.iloc[i, 1:], marker='o', label=df.iloc[i, 0])
+plt.xlabel('Technologies')
+plt.ylabel('Diversification')
+plt.title('Diversification of Each User Wallet Address')
+plt.legend()
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+        ```
+2024-08-18 18:00:56 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-08-18 18:00:56 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-08-18 18:00:56 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:00:56 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:00:56 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,7,1,7,8,0
+0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee,0,0,0,0,2
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,1,10,9,9,1
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot me a graph for diversification of each user wallet address 
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'], 'Python': [1, 0, 7], 'Java': [10, 0, 1], 'C++': [9, 0, 7], 'Web Development': [9, 0, 8], 'AI': [1, 2, 0]}
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.plot(df.columns[1:], df.iloc[i, 1:], marker='o', label=df.iloc[i, 0])
+plt.xlabel('Technologies')
+plt.ylabel('Diversification')
+plt.title('Diversification of Each User Wallet Address')
+plt.legend()
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:00:56 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:01:02 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:01:02 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'],
+        'Python': [1, 0, 7],
+        'Java': [10, 0, 1],
+        'C++': [9, 0, 7],
+        'Web Development': [9, 0, 8],
+        'AI': [1, 2, 0]}
+
+df = pd.DataFrame(data)
+plt.figure(figsize=(10, 6))
+
+for i in range(len(df)):
+    plt.plot(df.columns[1:], df.iloc[i, 1:], marker='o', label=df.iloc[i, 0])
+
+plt.xlabel('Technologies')
+plt.ylabel('Diversification')
+plt.title('Diversification of Each User Wallet Address')
+plt.legend()
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+            ```
+            
+2024-08-18 18:01:02 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:01:02 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'], 'Python': [1, 0, 7], 'Java': [10, 0, 1], 'C++': [9, 0, 7], 'Web Development': [9, 0, 8], 'AI': [1, 2, 0]}
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.plot(df.columns[1:], df.iloc[i, 1:], marker='o', label=df.iloc[i, 0])
+plt.xlabel('Technologies')
+plt.ylabel('Diversification')
+plt.title('Diversification of Each User Wallet Address')
+plt.legend()
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+        ```
+2024-08-18 18:01:04 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-08-18 18:01:04 [ERROR] Pipeline failed on step 6: No result returned
+2024-08-18 18:08:46 [INFO] Question: What are the best courses available for me to take based on my skillset . My wallet address is : 0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb
+2024-08-18 18:08:46 [INFO] Running PandasAI with bamboo_llm LLM...
+2024-08-18 18:08:46 [INFO] Prompt ID: bc5a8af2-2bc7-472f-a4f2-d7686def73b5
+2024-08-18 18:08:47 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-08-18 18:08:47 [INFO] Executing Step 0: ValidatePipelineInput
+2024-08-18 18:08:47 [INFO] Executing Step 1: CacheLookup
+2024-08-18 18:08:47 [INFO] Executing Step 2: PromptGeneration
+2024-08-18 18:08:52 [INFO] Querying without using training data.
+2024-08-18 18:08:53 [INFO] Querying without using training docs.
+2024-08-18 18:08:53 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0x367a8AB9E269E7841828e71f8675fbae01443D2d,7,10,9,9,2
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,1,0,8,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,1,0,7,0,0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ What are the best courses available for me to take based on my skillset . My wallet address is : 0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-08-18 18:08:53 [INFO] Executing Step 3: CodeGenerator
+2024-08-18 18:09:01 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:09:01 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+dfs = [
+    pd.DataFrame({
+        'User or Wallet Address': ['0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D'],
+        'Python': [7, 0, 1],
+        'Java': [10, 1, 0],
+        'C++': [9, 0, 7],
+        'Web Development': [9, 8, 0],
+        'AI': [2, 1, 0]
+    })
+]
+
+# Extract the skillset for the given wallet address
+wallet_address = '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'
+skills_df = None
+for df in dfs:
+    if wallet_address in df['User or Wallet Address'].values:
+        skills_df = df
+        break
+
+# Calculate the total skill score for the user
+skills_df['Total Score'] = skills_df[['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+
+# Find the best courses based on the skillset
+best_courses = skills_df.drop(columns=['User or Wallet Address', 'Total Score']).idxmax(axis=1)
+
+result = {"type": "string", "value": f"The best courses for the user with wallet address {wallet_address} are: {', '.join(best_courses)}."}
+            ```
+            
+2024-08-18 18:09:01 [INFO] Executing Step 4: CachePopulation
+2024-08-18 18:09:01 [INFO] Executing Step 5: CodeCleaning
+2024-08-18 18:09:01 [INFO] 
+Code running:
+```
+wallet_address = '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'
+skills_df = None
+for df in dfs:
+    if wallet_address in df['User or Wallet Address'].values:
+        skills_df = df
+        break
+skills_df['Total Score'] = skills_df[['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+best_courses = skills_df.drop(columns=['User or Wallet Address', 'Total Score']).idxmax(axis=1)
+result = {'type': 'string', 'value': f"The best courses for the user with wallet address {wallet_address} are: {', '.join(best_courses)}."}
+        ```
+2024-08-18 18:09:01 [INFO] Executing Step 6: CodeExecution
+2024-08-18 18:09:01 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 7, in <module>
+TypeError: 'NoneType' object is not subscriptable
+
+2024-08-18 18:09:01 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-08-18 18:09:01 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:09:01 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:09:01 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0x367a8AB9E269E7841828e71f8675fbae01443D2d,7,10,9,9,2
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,1,0,8,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,1,0,7,0,0
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What are the best courses available for me to take based on my skillset . My wallet address is : 0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb
+
+You generated this python code:
+wallet_address = '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'
+skills_df = None
+for df in dfs:
+    if wallet_address in df['User or Wallet Address'].values:
+        skills_df = df
+        break
+skills_df['Total Score'] = skills_df[['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+best_courses = skills_df.drop(columns=['User or Wallet Address', 'Total Score']).idxmax(axis=1)
+result = {'type': 'string', 'value': f"The best courses for the user with wallet address {wallet_address} are: {', '.join(best_courses)}."}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 7, in <module>
+TypeError: 'NoneType' object is not subscriptable
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:09:01 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:09:07 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:09:07 [INFO] Code generated:
+            ```
+            wallet_address = '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'
+skills_df = None
+for df in dfs:
+    if wallet_address in df['User or Wallet Address'].values:
+        skills_df = df
+        break
+
+if skills_df is not None:
+    skills_df['Total Score'] = skills_df[['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+    best_courses = skills_df.drop(columns=['User or Wallet Address', 'Total Score']).idxmax(axis=1)
+    result = {'type': 'string', 'value': f"The best courses for the user with wallet address {wallet_address} are: {', '.join(best_courses)}."}
+else:
+    result = {'type': 'string', 'value': f"No data found for the user with wallet address {wallet_address}."}
+            ```
+            
+2024-08-18 18:09:07 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:09:07 [INFO] 
+Code running:
+```
+wallet_address = '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'
+skills_df = None
+for df in dfs:
+    if wallet_address in df['User or Wallet Address'].values:
+        skills_df = df
+        break
+if skills_df is not None:
+    skills_df['Total Score'] = skills_df[['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+    best_courses = skills_df.drop(columns=['User or Wallet Address', 'Total Score']).idxmax(axis=1)
+    result = {'type': 'string', 'value': f"The best courses for the user with wallet address {wallet_address} are: {', '.join(best_courses)}."}
+else:
+    result = {'type': 'string', 'value': f'No data found for the user with wallet address {wallet_address}.'}
+        ```
+2024-08-18 18:09:07 [INFO] Executing Step 7: ResultValidation
+2024-08-18 18:09:07 [INFO] Answer: {'type': 'string', 'value': 'No data found for the user with wallet address 0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb.'}
+2024-08-18 18:09:07 [INFO] Executing Step 8: ResultParsing
+2024-08-18 18:09:33 [INFO] Question: Plot me a graph of diversification of each users based on their skillset
+2024-08-18 18:09:33 [INFO] Running PandasAI with bamboo_llm LLM...
+2024-08-18 18:09:33 [INFO] Prompt ID: 2a8931d4-a98b-4638-996e-775032863325
+2024-08-18 18:09:33 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-08-18 18:09:33 [INFO] Executing Step 0: ValidatePipelineInput
+2024-08-18 18:09:33 [INFO] Executing Step 1: CacheLookup
+2024-08-18 18:09:33 [INFO] Executing Step 2: PromptGeneration
+2024-08-18 18:09:34 [INFO] Querying without using training data.
+2024-08-18 18:09:34 [INFO] Querying without using training docs.
+2024-08-18 18:09:34 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,7,10,7,8,1
+0x367a8AB9E269E7841828e71f8675fbae01443D2d,0,0,0,0,2
+0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b,1,1,9,9,0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ Plot me a graph of diversification of each users based on their skillset
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-08-18 18:09:34 [INFO] Executing Step 3: CodeGenerator
+2024-08-18 18:09:39 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:09:39 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create a DataFrame from the provided data
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'],
+        'Python': [7, 0, 1],
+        'Java': [10, 0, 1],
+        'C++': [7, 0, 9],
+        'Web Development': [8, 0, 9],
+        'AI': [1, 2, 0]}
+
+df = pd.DataFrame(data)
+
+# Set 'User or Wallet Address' as the index
+df.set_index('User or Wallet Address', inplace=True)
+
+# Plot the diversification of each user based on their skillset
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+
+# Save the plot as a PNG file
+plt.savefig('user_diversification.png')
+
+# Declare result variable as a dictionary with plot type and value
+result = {"type": "plot", "value": "user_diversification.png"}
+            ```
+            
+2024-08-18 18:09:39 [INFO] Executing Step 4: CachePopulation
+2024-08-18 18:09:39 [INFO] Executing Step 5: CodeCleaning
+2024-08-18 18:09:39 [INFO] Saving charts to C:\Users\dhana\coding\Personal Projects\DeCATv\exports\charts\temp_chart.png
+2024-08-18 18:09:39 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [7, 0, 1], 'Java': [10, 0, 1], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [1, 2, 0]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+        ```
+2024-08-18 18:09:39 [INFO] Executing Step 6: CodeExecution
+2024-08-18 18:09:40 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-08-18 18:09:40 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-08-18 18:09:40 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:09:40 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:09:40 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,7,10,7,8,1
+0x367a8AB9E269E7841828e71f8675fbae01443D2d,0,0,0,0,2
+0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b,1,1,9,9,0
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot me a graph of diversification of each users based on their skillset
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [7, 0, 1], 'Java': [10, 0, 1], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [1, 2, 0]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:09:40 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:09:45 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:09:45 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [7, 0, 1], 'Java': [10, 0, 1], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [1, 2, 0]}
+df = pd.DataFrame(data)
+df.set_index('User or Wallet Address', inplace=True)
+
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+
+plt.show()
+            ```
+            
+2024-08-18 18:09:45 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:09:45 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [7, 0, 1], 'Java': [10, 0, 1], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [1, 2, 0]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+        ```
+2024-08-18 18:09:45 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\core\frame.py", line 6012, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['User or Wallet Address'] are in the columns"
+
+2024-08-18 18:09:45 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-08-18 18:09:45 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:09:45 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:09:45 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,7,10,7,8,1
+0x367a8AB9E269E7841828e71f8675fbae01443D2d,0,0,0,0,2
+0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b,1,1,9,9,0
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot me a graph of diversification of each users based on their skillset
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [7, 0, 1], 'Java': [10, 0, 1], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [1, 2, 0]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\core\frame.py", line 6012, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['User or Wallet Address'] are in the columns"
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:09:45 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:09:49 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:09:49 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [7, 0, 1], 'Java': [10, 0, 1], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [1, 2, 0]}
+df = pd.DataFrame(data)
+df.set_index('User or Wallet Address', inplace=True)
+
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+            ```
+            
+2024-08-18 18:09:49 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:09:49 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [7, 0, 1], 'Java': [10, 0, 1], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [1, 2, 0]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+        ```
+2024-08-18 18:09:49 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\core\frame.py", line 6012, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['User or Wallet Address'] are in the columns"
+
+2024-08-18 18:09:49 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-08-18 18:09:49 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:09:49 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:09:49 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,7,10,7,8,1
+0x367a8AB9E269E7841828e71f8675fbae01443D2d,0,0,0,0,2
+0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b,1,1,9,9,0
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot me a graph of diversification of each users based on their skillset
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [7, 0, 1], 'Java': [10, 0, 1], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [1, 2, 0]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\core\frame.py", line 6012, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['User or Wallet Address'] are in the columns"
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:09:49 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:09:53 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:09:53 [INFO] Code generated:
+            ```
+            data = {'User or Wallet Address': ['0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [0, 7, 1], 'Java': [0, 10, 1], 'C++': [0, 7, 9], 'Web Development': [0, 8, 9], 'AI': [2, 1, 0]}
+df = pd.DataFrame(data)
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+            ```
+            
+2024-08-18 18:09:53 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:09:53 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [0, 7, 1], 'Java': [0, 10, 1], 'C++': [0, 7, 9], 'Web Development': [0, 8, 9], 'AI': [2, 1, 0]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+        ```
+2024-08-18 18:09:53 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\core\frame.py", line 6012, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['User or Wallet Address'] are in the columns"
+
+2024-08-18 18:09:53 [ERROR] Pipeline failed on step 6: "None of ['User or Wallet Address'] are in the columns"
+2024-08-18 18:11:12 [INFO] Question: Plot me a graph of diversification of each users based on their skillset
+2024-08-18 18:11:12 [INFO] Running PandasAI with bamboo_llm LLM...
+2024-08-18 18:11:12 [INFO] Prompt ID: d93af8b9-5445-4e9d-b00b-1d98a4baf395
+2024-08-18 18:11:12 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-08-18 18:11:13 [INFO] Executing Step 0: ValidatePipelineInput
+2024-08-18 18:11:13 [INFO] Executing Step 1: CacheLookup
+2024-08-18 18:11:13 [INFO] Using cached response
+2024-08-18 18:11:13 [INFO] Executing Step 2: PromptGeneration
+2024-08-18 18:11:13 [INFO] Executing Step 2: Skipping...
+2024-08-18 18:11:13 [INFO] Executing Step 3: CodeGenerator
+2024-08-18 18:11:13 [INFO] Executing Step 3: Skipping...
+2024-08-18 18:11:13 [INFO] Executing Step 4: CachePopulation
+2024-08-18 18:11:13 [INFO] Executing Step 4: Skipping...
+2024-08-18 18:11:13 [INFO] Executing Step 5: CodeCleaning
+2024-08-18 18:11:13 [INFO] Saving charts to C:\Users\dhana\coding\Personal Projects\DeCATv\exports\charts\temp_chart.png
+2024-08-18 18:11:13 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [7, 0, 1], 'Java': [10, 0, 1], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [1, 2, 0]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+        ```
+2024-08-18 18:11:13 [INFO] Executing Step 6: CodeExecution
+2024-08-18 18:11:13 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-08-18 18:11:14 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-08-18 18:11:14 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:11:14 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:11:14 [INFO] Using prompt: <dataframe>
+dfs[0]:6x5
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,7,0,0,9,2
+0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b,1,1,7,0,0
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,10,9,8,1
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot me a graph of diversification of each users based on their skillset
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b'], 'Python': [7, 0, 1], 'Java': [10, 0, 1], 'C++': [7, 0, 9], 'Web Development': [8, 0, 9], 'AI': [1, 2, 0]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:11:14 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:11:18 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:11:18 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'], 'Python': [7, 1, 0], 'Java': [0, 1, 10], 'C++': [0, 7, 9], 'Web Development': [9, 0, 8], 'AI': [2, 0, 1]}
+df = pd.DataFrame(data)
+df.set_index('User or Wallet Address', inplace=True)
+
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+            ```
+            
+2024-08-18 18:11:18 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:11:18 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'], 'Python': [7, 1, 0], 'Java': [0, 1, 10], 'C++': [0, 7, 9], 'Web Development': [9, 0, 8], 'AI': [2, 0, 1]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+        ```
+2024-08-18 18:11:18 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\core\frame.py", line 6012, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['User or Wallet Address'] are in the columns"
+
+2024-08-18 18:11:18 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-08-18 18:11:18 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:11:18 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:11:18 [INFO] Using prompt: <dataframe>
+dfs[0]:6x5
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,7,0,0,9,2
+0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b,1,1,7,0,0
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,10,9,8,1
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot me a graph of diversification of each users based on their skillset
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'], 'Python': [7, 1, 0], 'Java': [0, 1, 10], 'C++': [0, 7, 9], 'Web Development': [9, 0, 8], 'AI': [2, 0, 1]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\core\frame.py", line 6012, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['User or Wallet Address'] are in the columns"
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:11:18 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:11:23 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:11:23 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'], 
+        'Python': [7, 1, 0], 
+        'Java': [0, 1, 10], 
+        'C++': [0, 7, 9], 
+        'Web Development': [9, 0, 8], 
+        'AI': [2, 0, 1]}
+
+df = pd.DataFrame(data)
+df.set_index('User or Wallet Address', inplace=True)
+
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+            ```
+            
+2024-08-18 18:11:23 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:11:23 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'], 'Python': [7, 1, 0], 'Java': [0, 1, 10], 'C++': [0, 7, 9], 'Web Development': [9, 0, 8], 'AI': [2, 0, 1]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+        ```
+2024-08-18 18:11:23 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\core\frame.py", line 6012, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['User or Wallet Address'] are in the columns"
+
+2024-08-18 18:11:23 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-08-18 18:11:23 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:11:23 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:11:23 [INFO] Using prompt: <dataframe>
+dfs[0]:6x5
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,7,0,0,9,2
+0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b,1,1,7,0,0
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,10,9,8,1
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot me a graph of diversification of each users based on their skillset
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'], 'Python': [7, 1, 0], 'Java': [0, 1, 10], 'C++': [0, 7, 9], 'Web Development': [9, 0, 8], 'AI': [2, 0, 1]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\core\frame.py", line 6012, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['User or Wallet Address'] are in the columns"
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:11:23 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:11:27 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:11:27 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'],
+    'Python': [7, 1, 0],
+    'Java': [0, 1, 10],
+    'C++': [0, 7, 9],
+    'Web Development': [9, 0, 8],
+    'AI': [2, 0, 1]
+}
+
+df = pd.DataFrame(data)
+df.set_index('User or Wallet Address', inplace=True)
+
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+            ```
+            
+2024-08-18 18:11:27 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:11:27 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x4Bb98D509665DcE1cB97bDc33cE3bD9A7D32eA9b', '0xFFc206f3779CdeBc242220Af294c336a00AD4C5C'], 'Python': [7, 1, 0], 'Java': [0, 1, 10], 'C++': [0, 7, 9], 'Web Development': [9, 0, 8], 'AI': [2, 0, 1]}
+df = dfs[0]
+df.set_index('User or Wallet Address', inplace=True)
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Diversification of Users Based on Skillset')
+plt.xlabel('Users')
+plt.ylabel('Skill Level')
+plt.xticks(rotation=45)
+plt.legend(title='Skills')
+plt.tight_layout()
+plt.show()
+        ```
+2024-08-18 18:11:27 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandas\core\frame.py", line 6012, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['User or Wallet Address'] are in the columns"
+
+2024-08-18 18:11:27 [ERROR] Pipeline failed on step 6: "None of ['User or Wallet Address'] are in the columns"
+2024-08-18 18:11:57 [INFO] Question: Plot me a graph of diversification of each wallet address based on their skillset
+2024-08-18 18:11:57 [INFO] Running PandasAI with bamboo_llm LLM...
+2024-08-18 18:11:57 [INFO] Prompt ID: 99f25e75-df2e-41c2-a4fa-7c16821c0dfd
+2024-08-18 18:11:57 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-08-18 18:11:57 [INFO] Executing Step 0: ValidatePipelineInput
+2024-08-18 18:11:57 [INFO] Executing Step 1: CacheLookup
+2024-08-18 18:11:57 [INFO] Executing Step 2: PromptGeneration
+2024-08-18 18:11:59 [INFO] Querying without using training data.
+2024-08-18 18:12:00 [INFO] Querying without using training docs.
+2024-08-18 18:12:00 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee,7,1,9,9,2
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,1,10,7,8,1
+0x367a8AB9E269E7841828e71f8675fbae01443D2d,0,0,0,0,0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ Plot me a graph of diversification of each wallet address based on their skillset
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-08-18 18:12:00 [INFO] Executing Step 3: CodeGenerator
+2024-08-18 18:12:07 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:12:07 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Dataframe
+data = {
+    'User or Wallet Address': ['0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d'],
+    'Python': [7, 1, 0],
+    'Java': [1, 10, 0],
+    'C++': [9, 7, 0],
+    'Web Development': [9, 8, 0],
+    'AI': [2, 1, 0]
+}
+
+df = pd.DataFrame(data)
+
+# Calculating total skills
+df['Total Skills'] = df.sum(axis=1)
+
+# Plotting a bar graph for diversification based on skillset for each wallet address
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.bar(df.columns[1:-1], df.iloc[i, 1:-1], alpha=0.5, label=df.iloc[i, 0])
+
+plt.xlabel('Skillset')
+plt.ylabel('Skill Level')
+plt.title('Diversification of Wallet Addresses Based on Skillset')
+plt.legend(title='Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot as a png file
+plt.savefig('diversification_plot.png')
+
+# Declare result variable
+result = {"type": "plot", "value": "diversification_plot.png"}
+            ```
+            
+2024-08-18 18:12:07 [INFO] Executing Step 4: CachePopulation
+2024-08-18 18:12:07 [INFO] Executing Step 5: CodeCleaning
+2024-08-18 18:12:07 [INFO] Saving charts to C:\Users\dhana\coding\Personal Projects\DeCATv\exports\charts\temp_chart.png
+2024-08-18 18:12:07 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d'], 'Python': [7, 1, 0], 'Java': [1, 10, 0], 'C++': [9, 7, 0], 'Web Development': [9, 8, 0], 'AI': [2, 1, 0]}
+df = dfs[0]
+df['Total Skills'] = df.sum(axis=1)
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.bar(df.columns[1:-1], df.iloc[i, 1:-1], alpha=0.5, label=df.iloc[i, 0])
+plt.xlabel('Skillset')
+plt.ylabel('Skill Level')
+plt.title('Diversification of Wallet Addresses Based on Skillset')
+plt.legend(title='Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+        ```
+2024-08-18 18:12:07 [INFO] Executing Step 6: CodeExecution
+2024-08-18 18:12:08 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-08-18 18:12:08 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-08-18 18:12:08 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:12:08 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:12:08 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee,7,1,9,9,2
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,1,10,7,8,1
+0x367a8AB9E269E7841828e71f8675fbae01443D2d,0,0,0,0,0
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot me a graph of diversification of each wallet address based on their skillset
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d'], 'Python': [7, 1, 0], 'Java': [1, 10, 0], 'C++': [9, 7, 0], 'Web Development': [9, 8, 0], 'AI': [2, 1, 0]}
+df = dfs[0]
+df['Total Skills'] = df.sum(axis=1)
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.bar(df.columns[1:-1], df.iloc[i, 1:-1], alpha=0.5, label=df.iloc[i, 0])
+plt.xlabel('Skillset')
+plt.ylabel('Skill Level')
+plt.title('Diversification of Wallet Addresses Based on Skillset')
+plt.legend(title='Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:12:08 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:12:13 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:12:13 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {'User or Wallet Address': ['0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d'], 'Python': [7, 1, 0], 'Java': [1, 10, 0], 'C++': [9, 7, 0], 'Web Development': [9, 8, 0], 'AI': [2, 1, 0]}
+df = pd.DataFrame(data)
+df['Total Skills'] = df.sum(axis=1)
+
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.bar(df.columns[1:-1], df.iloc[i, 1:-1], alpha=0.5, label=df.iloc[i, 0])
+
+plt.xlabel('Skillset')
+plt.ylabel('Skill Level')
+plt.title('Diversification of Wallet Addresses Based on Skillset')
+plt.legend(title='Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+            ```
+            
+2024-08-18 18:12:13 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:12:13 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d'], 'Python': [7, 1, 0], 'Java': [1, 10, 0], 'C++': [9, 7, 0], 'Web Development': [9, 8, 0], 'AI': [2, 1, 0]}
+df = dfs[0]
+df['Total Skills'] = df.sum(axis=1)
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.bar(df.columns[1:-1], df.iloc[i, 1:-1], alpha=0.5, label=df.iloc[i, 0])
+plt.xlabel('Skillset')
+plt.ylabel('Skill Level')
+plt.title('Diversification of Wallet Addresses Based on Skillset')
+plt.legend(title='Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+        ```
+2024-08-18 18:12:29 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-08-18 18:12:29 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-08-18 18:12:29 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 18:12:29 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 18:12:29 [INFO] Using prompt: <dataframe>
+dfs[0]:6x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee,7,1,9,9,2
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,1,10,7,8,1
+0x367a8AB9E269E7841828e71f8675fbae01443D2d,0,0,0,0,0
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot me a graph of diversification of each wallet address based on their skillset
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d'], 'Python': [7, 1, 0], 'Java': [1, 10, 0], 'C++': [9, 7, 0], 'Web Development': [9, 8, 0], 'AI': [2, 1, 0]}
+df = dfs[0]
+df['Total Skills'] = df.sum(axis=1)
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.bar(df.columns[1:-1], df.iloc[i, 1:-1], alpha=0.5, label=df.iloc[i, 0])
+plt.xlabel('Skillset')
+plt.ylabel('Skill Level')
+plt.title('Diversification of Wallet Addresses Based on Skillset')
+plt.legend(title='Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+
+Fix the python code above and return the new python code:
+2024-08-18 18:12:29 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 18:12:35 [INFO] Prompt used:
+            None
+            
+2024-08-18 18:12:35 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+data = {'User or Wallet Address': ['0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d'], 
+        'Python': [7, 1, 0], 
+        'Java': [1, 10, 0], 
+        'C++': [9, 7, 0], 
+        'Web Development': [9, 8, 0], 
+        'AI': [2, 1, 0]}
+
+df = pd.DataFrame(data)
+df['Total Skills'] = df.sum(axis=1)
+
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.bar(df.columns[1:-1], df.iloc[i, 1:-1], alpha=0.5, label=df.iloc[i, 0])
+
+plt.xlabel('Skillset')
+plt.ylabel('Skill Level')
+plt.title('Diversification of Wallet Addresses Based on Skillset')
+plt.legend(title='Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+            ```
+            
+2024-08-18 18:12:35 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 18:12:35 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xdC737Bc0B2174a5d4A8CA7b588905c7770C671ee', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x367a8AB9E269E7841828e71f8675fbae01443D2d'], 'Python': [7, 1, 0], 'Java': [1, 10, 0], 'C++': [9, 7, 0], 'Web Development': [9, 8, 0], 'AI': [2, 1, 0]}
+df = dfs[0]
+df['Total Skills'] = df.sum(axis=1)
+plt.figure(figsize=(10, 6))
+for i in range(len(df)):
+    plt.bar(df.columns[1:-1], df.iloc[i, 1:-1], alpha=0.5, label=df.iloc[i, 0])
+plt.xlabel('Skillset')
+plt.ylabel('Skill Level')
+plt.title('Diversification of Wallet Addresses Based on Skillset')
+plt.legend(title='Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+        ```
+2024-08-18 19:35:10 [INFO] Question: Compare and plot the diversification of each wallet address with their skills 
+2024-08-18 19:35:10 [INFO] Running PandasAI with bamboo_llm LLM...
+2024-08-18 19:35:10 [INFO] Prompt ID: b426ff46-7e99-4f2b-b0a0-72f65a4ab1ba
+2024-08-18 19:35:10 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-08-18 19:35:10 [INFO] Executing Step 0: ValidatePipelineInput
+2024-08-18 19:35:11 [INFO] Executing Step 1: CacheLookup
+2024-08-18 19:35:11 [INFO] Executing Step 2: PromptGeneration
+2024-08-18 19:35:12 [INFO] Querying without using training data.
+2024-08-18 19:35:13 [INFO] Querying without using training docs.
+2024-08-18 19:35:13 [INFO] Using prompt: <dataframe>
+dfs[0]:3x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,0,0,0,1
+0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb,2,1,0,0,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,0,0,0,0,2
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ Compare and plot the diversification of each wallet address with their skills 
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-08-18 19:35:13 [INFO] Executing Step 3: CodeGenerator
+2024-08-18 19:35:17 [INFO] Prompt used:
+            None
+            
+2024-08-18 19:35:17 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Calculate diversification for each wallet address
+dfs[0]['Total Skills'] = dfs[0][['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+
+# Plot the diversification of each wallet address
+plt.figure(figsize=(10, 6))
+for index, row in dfs[0].iterrows():
+    plt.bar(row['User or Wallet Address'], row['Total Skills'])
+
+plt.xlabel('Wallet Address')
+plt.ylabel('Total Skills')
+plt.title('Diversification of Skills for Each Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot as png
+plt.savefig('wallet_diversification.png')
+
+# Declare result var
+result = {"type": "plot", "value": "wallet_diversification.png"}
+            ```
+            
+2024-08-18 19:35:17 [INFO] Executing Step 4: CachePopulation
+2024-08-18 19:35:17 [INFO] Executing Step 5: CodeCleaning
+2024-08-18 19:35:17 [INFO] Saving charts to C:\Users\dhana\coding\Personal Projects\DeCATv\exports\charts\temp_chart.png
+2024-08-18 19:35:18 [INFO] 
+Code running:
+```
+dfs[0]['Total Skills'] = dfs[0][['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+plt.figure(figsize=(10, 6))
+for index, row in dfs[0].iterrows():
+    plt.bar(row['User or Wallet Address'], row['Total Skills'])
+plt.xlabel('Wallet Address')
+plt.ylabel('Total Skills')
+plt.title('Diversification of Skills for Each Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+        ```
+2024-08-18 19:35:18 [INFO] Executing Step 6: CodeExecution
+2024-08-18 19:35:19 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-08-18 19:35:19 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-08-18 19:35:19 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 19:35:19 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 19:35:19 [INFO] Using prompt: <dataframe>
+dfs[0]:3x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,0,0,0,1
+0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb,2,1,0,0,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,0,0,0,0,2
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Compare and plot the diversification of each wallet address with their skills 
+
+You generated this python code:
+dfs[0]['Total Skills'] = dfs[0][['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+plt.figure(figsize=(10, 6))
+for index, row in dfs[0].iterrows():
+    plt.bar(row['User or Wallet Address'], row['Total Skills'])
+plt.xlabel('Wallet Address')
+plt.ylabel('Total Skills')
+plt.title('Diversification of Skills for Each Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-08-18 19:35:19 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 19:35:25 [INFO] Prompt used:
+            None
+            
+2024-08-18 19:35:25 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+dfs[0]['Total Skills'] = dfs[0][['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['User or Wallet Address'], dfs[0]['Total Skills'])
+plt.xlabel('Wallet Address')
+plt.ylabel('Total Skills')
+plt.title('Diversification of Skills for Each Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+            ```
+            
+2024-08-18 19:35:25 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 19:35:25 [INFO] Saving charts to C:\Users\dhana\coding\Personal Projects\DeCATv\exports\charts\temp_chart.png
+2024-08-18 19:35:25 [INFO] 
+Code running:
+```
+dfs[0]['Total Skills'] = dfs[0][['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['User or Wallet Address'], dfs[0]['Total Skills'])
+plt.xlabel('Wallet Address')
+plt.ylabel('Total Skills')
+plt.title('Diversification of Skills for Each Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+        ```
+2024-08-18 19:35:25 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-08-18 19:35:25 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-08-18 19:35:25 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 19:35:25 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 19:35:25 [INFO] Using prompt: <dataframe>
+dfs[0]:3x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,0,0,0,1
+0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb,2,1,0,0,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,0,0,0,0,2
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Compare and plot the diversification of each wallet address with their skills 
+
+You generated this python code:
+dfs[0]['Total Skills'] = dfs[0][['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['User or Wallet Address'], dfs[0]['Total Skills'])
+plt.xlabel('Wallet Address')
+plt.ylabel('Total Skills')
+plt.title('Diversification of Skills for Each Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-08-18 19:35:25 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 19:35:29 [INFO] Prompt used:
+            None
+            
+2024-08-18 19:35:29 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+dfs[0]['Total Skills'] = dfs[0][['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['User or Wallet Address'], dfs[0]['Total Skills'])
+plt.xlabel('Wallet Address')
+plt.ylabel('Total Skills')
+plt.title('Diversification of Skills for Each Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot temporarily to a file
+temp_chart_path = 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'
+plt.savefig(temp_chart_path)
+
+result = {'type': 'plot', 'value': temp_chart_path}
+            ```
+            
+2024-08-18 19:35:29 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 19:35:29 [INFO] Saving charts to C:\Users\dhana\coding\Personal Projects\DeCATv\exports\charts\temp_chart.png
+2024-08-18 19:35:29 [INFO] 
+Code running:
+```
+dfs[0]['Total Skills'] = dfs[0][['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['User or Wallet Address'], dfs[0]['Total Skills'])
+plt.xlabel('Wallet Address')
+plt.ylabel('Total Skills')
+plt.title('Diversification of Skills for Each Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+temp_chart_path = 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'
+plt.savefig(temp_chart_path)
+result = {'type': 'plot', 'value': temp_chart_path}
+        ```
+2024-08-18 19:35:30 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-08-18 19:35:30 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-08-18 19:35:30 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 19:35:30 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 19:35:30 [INFO] Using prompt: <dataframe>
+dfs[0]:3x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,0,0,0,1
+0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb,2,1,0,0,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,0,0,0,0,2
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Compare and plot the diversification of each wallet address with their skills 
+
+You generated this python code:
+dfs[0]['Total Skills'] = dfs[0][['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['User or Wallet Address'], dfs[0]['Total Skills'])
+plt.xlabel('Wallet Address')
+plt.ylabel('Total Skills')
+plt.title('Diversification of Skills for Each Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+temp_chart_path = 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'
+plt.savefig(temp_chart_path)
+result = {'type': 'plot', 'value': temp_chart_path}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-08-18 19:35:30 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 19:35:33 [INFO] Prompt used:
+            None
+            
+2024-08-18 19:35:33 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+dfs[0]['Total Skills'] = dfs[0][['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['User or Wallet Address'], dfs[0]['Total Skills'])
+plt.xlabel('Wallet Address')
+plt.ylabel('Total Skills')
+plt.title('Diversification of Skills for Each Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+temp_chart_path = 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'
+plt.savefig(temp_chart_path)
+result = {'type': 'plot', 'value': temp_chart_path}
+            ```
+            
+2024-08-18 19:35:33 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 19:35:33 [INFO] Saving charts to C:\Users\dhana\coding\Personal Projects\DeCATv\exports\charts\temp_chart.png
+2024-08-18 19:35:33 [INFO] 
+Code running:
+```
+dfs[0]['Total Skills'] = dfs[0][['Python', 'Java', 'C++', 'Web Development', 'AI']].sum(axis=1)
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['User or Wallet Address'], dfs[0]['Total Skills'])
+plt.xlabel('Wallet Address')
+plt.ylabel('Total Skills')
+plt.title('Diversification of Skills for Each Wallet Address')
+plt.xticks(rotation=45)
+plt.tight_layout()
+temp_chart_path = 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'
+plt.savefig(temp_chart_path)
+result = {'type': 'plot', 'value': temp_chart_path}
+        ```
+2024-08-18 19:35:34 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-08-18 19:35:34 [ERROR] Pipeline failed on step 6: Value type <class 'str'> must match with type plot
+2024-08-18 19:35:58 [INFO] Question: Compare and plot a pie chart for diversification of each wallet address with their skills 
+2024-08-18 19:35:58 [INFO] Running PandasAI with bamboo_llm LLM...
+2024-08-18 19:35:58 [INFO] Prompt ID: dd5a64e5-df05-4394-93d3-18c65e96fd72
+2024-08-18 19:35:58 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-08-18 19:35:58 [INFO] Executing Step 0: ValidatePipelineInput
+2024-08-18 19:35:58 [INFO] Executing Step 1: CacheLookup
+2024-08-18 19:35:58 [INFO] Executing Step 2: PromptGeneration
+2024-08-18 19:36:00 [INFO] Querying without using training data.
+2024-08-18 19:36:01 [INFO] Querying without using training docs.
+2024-08-18 19:36:01 [INFO] Using prompt: <dataframe>
+dfs[0]:3x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,0,0,0,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,0,0,0,0,2
+0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb,2,1,0,0,1
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ Compare and plot a pie chart for diversification of each wallet address with their skills 
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-08-18 19:36:01 [INFO] Executing Step 3: CodeGenerator
+2024-08-18 19:36:13 [INFO] Prompt used:
+            None
+            
+2024-08-18 19:36:13 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Data
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'],
+        'Python': [0, 0, 2],
+        'Java': [0, 0, 1],
+        'C++': [0, 0, 0],
+        'Web Development': [0, 0, 0],
+        'AI': [1, 2, 1]}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Calculate total skills per address
+df['Total Skills'] = df.iloc[:, 1:].sum(axis=1)
+
+# Plotting Pie Chart for diversification of each wallet address with their skills
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange']
+for i in range(len(df)):
+    labels = df.columns[1:-1]
+    sizes = df.iloc[i, 1:-1].tolist()
+    explode = (0.1, 0, 0, 0, 0)  # explode 1st slice
+
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    plt.title(f'Diversification of Skills for {df.loc[i, "User or Wallet Address"]}')
+    plt.savefig(f'address_{i}_skills_pie_chart.png')
+    plt.show()
+
+# Declare result
+result = {"type": "plot", "value": "address_0_skills_pie_chart.png"}
+            ```
+            
+2024-08-18 19:36:13 [INFO] Executing Step 4: CachePopulation
+2024-08-18 19:36:13 [INFO] Executing Step 5: CodeCleaning
+2024-08-18 19:36:13 [INFO] Saving charts to C:\Users\dhana\coding\Personal Projects\DeCATv\exports\charts\temp_chart.png
+2024-08-18 19:36:13 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'], 'Python': [0, 0, 2], 'Java': [0, 0, 1], 'C++': [0, 0, 0], 'Web Development': [0, 0, 0], 'AI': [1, 2, 1]}
+df = dfs[0]
+df['Total Skills'] = df.iloc[:, 1:].sum(axis=1)
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange']
+for i in range(len(df)):
+    labels = df.columns[1:-1]
+    sizes = df.iloc[i, 1:-1].tolist()
+    explode = 0.1, 0, 0, 0, 0
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.title(f"Diversification of Skills for {df.loc[i, 'User or Wallet Address']}")
+    plt.savefig(f'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+    plt.show()
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+        ```
+2024-08-18 19:36:13 [INFO] Executing Step 6: CodeExecution
+2024-08-18 19:37:01 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-08-18 19:37:01 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-08-18 19:37:01 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 19:37:01 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 19:37:01 [INFO] Using prompt: <dataframe>
+dfs[0]:3x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,0,0,0,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,0,0,0,0,2
+0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb,2,1,0,0,1
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Compare and plot a pie chart for diversification of each wallet address with their skills 
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'], 'Python': [0, 0, 2], 'Java': [0, 0, 1], 'C++': [0, 0, 0], 'Web Development': [0, 0, 0], 'AI': [1, 2, 1]}
+df = dfs[0]
+df['Total Skills'] = df.iloc[:, 1:].sum(axis=1)
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange']
+for i in range(len(df)):
+    labels = df.columns[1:-1]
+    sizes = df.iloc[i, 1:-1].tolist()
+    explode = 0.1, 0, 0, 0, 0
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.title(f"Diversification of Skills for {df.loc[i, 'User or Wallet Address']}")
+    plt.savefig(f'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+    plt.show()
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-08-18 19:37:01 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 19:37:08 [INFO] Prompt used:
+            None
+            
+2024-08-18 19:37:08 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'], 'Python': [0, 0, 2], 'Java': [0, 0, 1], 'C++': [0, 0, 0], 'Web Development': [0, 0, 0], 'AI': [1, 2, 1]}
+df = pd.DataFrame(data)
+df['Total Skills'] = df.iloc[:, 1:].sum(axis=1)
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange']
+
+for i in range(len(df)):
+    labels = df.columns[1:-1]
+    sizes = df.iloc[i, 1:-1].tolist()
+    explode = (0.1, 0, 0, 0, 0)
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.title(f"Diversification of Skills for {df.loc[i, 'User or Wallet Address']}")
+    plt.show()
+            ```
+            
+2024-08-18 19:37:08 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 19:37:08 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'], 'Python': [0, 0, 2], 'Java': [0, 0, 1], 'C++': [0, 0, 0], 'Web Development': [0, 0, 0], 'AI': [1, 2, 1]}
+df = dfs[0]
+df['Total Skills'] = df.iloc[:, 1:].sum(axis=1)
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange']
+for i in range(len(df)):
+    labels = df.columns[1:-1]
+    sizes = df.iloc[i, 1:-1].tolist()
+    explode = 0.1, 0, 0, 0, 0
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.title(f"Diversification of Skills for {df.loc[i, 'User or Wallet Address']}")
+    plt.show()
+        ```
+2024-08-18 19:37:15 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-08-18 19:37:15 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-08-18 19:37:15 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 19:37:15 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 19:37:15 [INFO] Using prompt: <dataframe>
+dfs[0]:3x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,0,0,0,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,0,0,0,0,2
+0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb,2,1,0,0,1
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Compare and plot a pie chart for diversification of each wallet address with their skills 
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'], 'Python': [0, 0, 2], 'Java': [0, 0, 1], 'C++': [0, 0, 0], 'Web Development': [0, 0, 0], 'AI': [1, 2, 1]}
+df = dfs[0]
+df['Total Skills'] = df.iloc[:, 1:].sum(axis=1)
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange']
+for i in range(len(df)):
+    labels = df.columns[1:-1]
+    sizes = df.iloc[i, 1:-1].tolist()
+    explode = 0.1, 0, 0, 0, 0
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.title(f"Diversification of Skills for {df.loc[i, 'User or Wallet Address']}")
+    plt.show()
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+
+Fix the python code above and return the new python code:
+2024-08-18 19:37:15 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 19:37:23 [INFO] Prompt used:
+            None
+            
+2024-08-18 19:37:23 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+data = {
+    'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'],
+    'Python': [0, 0, 2],
+    'Java': [0, 0, 1],
+    'C++': [0, 0, 0],
+    'Web Development': [0, 0, 0],
+    'AI': [1, 2, 1]
+}
+
+df = pd.DataFrame(data)
+df['Total Skills'] = df.iloc[:, 1:].sum(axis=1)
+
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange']
+
+for i in range(len(df)):
+    labels = df.columns[1:-1]
+    sizes = df.iloc[i, 1:-1].tolist()
+    explode = (0.1, 0, 0, 0, 0)
+    
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.title(f"Diversification of Skills for {df.loc[i, 'User or Wallet Address']}")
+    plt.show()
+            ```
+            
+2024-08-18 19:37:23 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 19:37:23 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'], 'Python': [0, 0, 2], 'Java': [0, 0, 1], 'C++': [0, 0, 0], 'Web Development': [0, 0, 0], 'AI': [1, 2, 1]}
+df = dfs[0]
+df['Total Skills'] = df.iloc[:, 1:].sum(axis=1)
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange']
+for i in range(len(df)):
+    labels = df.columns[1:-1]
+    sizes = df.iloc[i, 1:-1].tolist()
+    explode = 0.1, 0, 0, 0, 0
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.title(f"Diversification of Skills for {df.loc[i, 'User or Wallet Address']}")
+    plt.show()
+        ```
+2024-08-18 19:37:35 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-08-18 19:37:35 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-08-18 19:37:35 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 19:37:35 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 19:37:36 [INFO] Using prompt: <dataframe>
+dfs[0]:3x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,0,0,0,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,0,0,0,0,2
+0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb,2,1,0,0,1
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Compare and plot a pie chart for diversification of each wallet address with their skills 
+
+You generated this python code:
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'], 'Python': [0, 0, 2], 'Java': [0, 0, 1], 'C++': [0, 0, 0], 'Web Development': [0, 0, 0], 'AI': [1, 2, 1]}
+df = dfs[0]
+df['Total Skills'] = df.iloc[:, 1:].sum(axis=1)
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange']
+for i in range(len(df)):
+    labels = df.columns[1:-1]
+    sizes = df.iloc[i, 1:-1].tolist()
+    explode = 0.1, 0, 0, 0, 0
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.title(f"Diversification of Skills for {df.loc[i, 'User or Wallet Address']}")
+    plt.show()
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+
+Fix the python code above and return the new python code:
+2024-08-18 19:37:36 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 19:37:43 [INFO] Prompt used:
+            None
+            
+2024-08-18 19:37:43 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'], 'Python': [0, 0, 2], 'Java': [0, 0, 1], 'C++': [0, 0, 0], 'Web Development': [0, 0, 0], 'AI': [1, 2, 1]}
+df = pd.DataFrame(data)
+df['Total Skills'] = df.iloc[:, 1:].sum(axis=1)
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange']
+
+for i in range(len(df)):
+    labels = df.columns[1:-1]
+    sizes = df.iloc[i, 1:-1].tolist()
+    explode = (0.1, 0, 0, 0, 0)
+    
+    # Plotting the pie chart
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.title(f"Diversification of Skills for {df.loc[i, 'User or Wallet Address']}")
+    plt.show()
+            ```
+            
+2024-08-18 19:37:43 [INFO] Executing Step 2: CodeCleaning
+2024-08-18 19:37:43 [INFO] 
+Code running:
+```
+data = {'User or Wallet Address': ['0xFFc206f3779CdeBc242220Af294c336a00AD4C5C', '0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D', '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'], 'Python': [0, 0, 2], 'Java': [0, 0, 1], 'C++': [0, 0, 0], 'Web Development': [0, 0, 0], 'AI': [1, 2, 1]}
+df = dfs[0]
+df['Total Skills'] = df.iloc[:, 1:].sum(axis=1)
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange']
+for i in range(len(df)):
+    labels = df.columns[1:-1]
+    sizes = df.iloc[i, 1:-1].tolist()
+    explode = 0.1, 0, 0, 0, 0
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.title(f"Diversification of Skills for {df.loc[i, 'User or Wallet Address']}")
+    plt.show()
+        ```
+2024-08-18 19:38:02 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-08-18 19:38:02 [ERROR] Pipeline failed on step 6: No result returned
+2024-08-18 19:38:09 [INFO] Question: Compare and plot a pie chart for diversification of the wallet address: 0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb with their skills 
+2024-08-18 19:38:09 [INFO] Running PandasAI with bamboo_llm LLM...
+2024-08-18 19:38:09 [INFO] Prompt ID: 26f2f766-a59f-4bf8-b248-29964e5ab192
+2024-08-18 19:38:09 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-08-18 19:38:09 [INFO] Executing Step 0: ValidatePipelineInput
+2024-08-18 19:38:09 [INFO] Executing Step 1: CacheLookup
+2024-08-18 19:38:09 [INFO] Executing Step 2: PromptGeneration
+2024-08-18 19:38:10 [INFO] Querying without using training data.
+2024-08-18 19:38:11 [INFO] Querying without using training docs.
+2024-08-18 19:38:11 [INFO] Using prompt: <dataframe>
+dfs[0]:3x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,0,0,0,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,0,0,0,0,2
+0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb,2,1,0,0,1
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ Compare and plot a pie chart for diversification of the wallet address: 0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb with their skills 
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-08-18 19:38:11 [INFO] Executing Step 3: CodeGenerator
+2024-08-18 19:38:16 [INFO] Prompt used:
+            None
+            
+2024-08-18 19:38:16 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Extract the required DataFrame from the list
+df = dfs[0]
+
+# Filter the data for the specified wallet address
+wallet_address = '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'
+wallet_data = df[df['User or Wallet Address'] == wallet_address].drop(columns=['User or Wallet Address'])
+
+# Plot a pie chart for the skills distribution of the specified wallet address
+labels = wallet_data.columns
+sizes = wallet_data.values.flatten()
+plt.figure(figsize=(8, 8))
+plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+plt.axis('equal')
+plt.title(f'Skills Distribution for Wallet Address {wallet_address}')
+plt.savefig('skills_pie_chart.png')
+
+# Declare result variable
+result = {"type": "plot", "value": "skills_pie_chart.png"}
+            ```
+            
+2024-08-18 19:38:16 [INFO] Executing Step 4: CachePopulation
+2024-08-18 19:38:16 [INFO] Executing Step 5: CodeCleaning
+2024-08-18 19:38:16 [INFO] Saving charts to C:\Users\dhana\coding\Personal Projects\DeCATv\exports\charts\temp_chart.png
+2024-08-18 19:38:16 [INFO] 
+Code running:
+```
+df = dfs[0]
+wallet_address = '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'
+wallet_data = df[df['User or Wallet Address'] == wallet_address].drop(columns=['User or Wallet Address'])
+labels = wallet_data.columns
+sizes = wallet_data.values.flatten()
+plt.figure(figsize=(8, 8))
+plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+plt.axis('equal')
+plt.title(f'Skills Distribution for Wallet Address {wallet_address}')
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+        ```
+2024-08-18 19:38:16 [INFO] Executing Step 6: CodeExecution
+2024-08-18 19:38:16 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-08-18 19:38:16 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-08-18 19:38:16 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-08-18 19:38:16 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-08-18 19:38:16 [INFO] Using prompt: <dataframe>
+dfs[0]:3x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,0,0,0,0,1
+0xE2Fc0d09bAb5A348086CB49a7F74917494c0950D,0,0,0,0,2
+0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb,2,1,0,0,1
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Compare and plot a pie chart for diversification of the wallet address: 0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb with their skills 
+
+You generated this python code:
+df = dfs[0]
+wallet_address = '0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb'
+wallet_data = df[df['User or Wallet Address'] == wallet_address].drop(columns=['User or Wallet Address'])
+labels = wallet_data.columns
+sizes = wallet_data.values.flatten()
+plt.figure(figsize=(8, 8))
+plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+plt.axis('equal')
+plt.title(f'Skills Distribution for Wallet Address {wallet_address}')
+plt.savefig('C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Users/dhana/coding/Personal Projects/DeCATv/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\dhana\coding\Personal Projects\DeCATv\env\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-08-18 19:38:17 [INFO] Executing Step 1: CodeGenerator
+2024-08-18 19:38:18 [ERROR] Pipeline failed on step 1: Your BambooLLM inference limit has been reached. Please use pandas-ai with any other LLM available in the library. If you wish to continue using BambooLLM, visit this link https://tally.so/r/wzZNWg for more information.
+2024-08-18 19:38:18 [ERROR] Pipeline failed on step 6: Your BambooLLM inference limit has been reached. Please use pandas-ai with any other LLM available in the library. If you wish to continue using BambooLLM, visit this link https://tally.so/r/wzZNWg for more information.
+2024-08-21 09:46:18 [INFO] Question: plot a skills distribution for this wallet address : 0x8c9c46f67d5061c63829fdf37eadf51e213bfecb
+2024-08-21 09:46:20 [INFO] Running PandasAI with bamboo_llm LLM...
+2024-08-21 09:46:20 [INFO] Prompt ID: a818ba1a-f213-4443-bc3c-771361288c68
+2024-08-21 09:46:20 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-08-21 09:46:20 [INFO] Executing Step 0: ValidatePipelineInput
+2024-08-21 09:46:20 [INFO] Executing Step 1: CacheLookup
+2024-08-21 09:46:20 [INFO] Executing Step 2: PromptGeneration
+2024-08-21 09:46:21 [INFO] Querying without using training data.
+2024-08-21 09:46:23 [INFO] Querying without using training docs.
+2024-08-21 09:46:23 [INFO] Using prompt: <dataframe>
+dfs[0]:4x6
+User or Wallet Address,Python,Java,C++,Web Development,AI
+0xFFc206f3779CdeBc242220Af294c336a00AD4C5C,5,0,0,0,3
+0x8c9c46f67d5061c63829fdF37EAdF51E213BFEcb,0,2,0,1,4
+0xDBD7D4c5FD65a257a4e333D9C196E0775bedDdE8,1,2,1,1,0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+
+
+
+
+### QUERY
+ plot a skills distribution for this wallet address : 0x8c9c46f67d5061c63829fdf37eadf51e213bfecb
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-08-21 09:46:23 [INFO] Executing Step 3: CodeGenerator
+2024-08-21 09:46:24 [ERROR] Pipeline failed on step 3: Your BambooLLM inference limit has been reached. Please use pandas-ai with any other LLM available in the library. If you wish to continue using BambooLLM, visit this link https://tally.so/r/wzZNWg for more information.

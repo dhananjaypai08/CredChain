@@ -26,6 +26,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
+    "react-markdown": "^9.0.1",
     "react-router-dom": "^5.3.4",
     "three": "^0.167.0",
     "web3connect": "^1.0.0-beta.33"
@@ -57,7 +58,6 @@
     "@openzeppelin/contracts": "^4.7.0",
     "ethers": "^5.7.2",
     "hardhat": "^2.19.2",
-    "react-scripts": "^5.0.1",
-    "tailwindcss": "^3.4.7"
+    "react-scripts": "^5.0.1"
   }
 }

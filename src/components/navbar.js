@@ -14,7 +14,7 @@ const Navbar = (props) => {
         src={props.brandingLogo}
         className="navbar-branding-logo"
       /> */}
-      <button className="navbar-text1 home-button2 button-clean button">CredChain</button>
+      <a className="navbar-text1 home-button2 button-clean button" href="/">CredChain</a>
       <div className="navbar-nav-content">
         <div className="navbar-nav-links">
           <a className="navbar-text home-button2 button-clean button" href="/portfolio">Portfolio</a>

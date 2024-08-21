@@ -13,6 +13,7 @@ import Multiple from './views/Multiple'
 import ReputationSystem from './views/ReputationSystem'
 import JobsAvailable from './views/JobsAvailable'
 import NewHome from './views/newhome'
+import AI from './views/AI'
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route component={Multiple} exact path="/multiple" />
         <Route component={ReputationSystem} exact path="/reputation" />
         <Route component={JobsAvailable} exact path="/jobsavailable" />
+        <Route component={AI} exact path="/chatwithai" />
       </div>
       </AppProvider>
     </Router>

@@ -28,6 +28,7 @@ const JobsAvailable = (props) => {
   const [chat, setChat] = useState();
   const [showChat, setshowchat] = useState(false);
   const [prompt, setPrompt] = useState();
+  const [recommendation, setRecommendation] = useState("");
 //   const [curr_mints, settotalMints] = useState(0);
 //   const [curr_endorsements_received, setEndorsementReceived] = useState(0);
 //   const [curr_endorsements_given, setEndorsementGiven] = useState(0);
@@ -57,8 +58,22 @@ const JobsAvailable = (props) => {
     event.target.reset()
 };
 
+const formatMessage = (content) => {
+  // Convert ** to <strong> tags
+  content = content.replace(/\*\*(.*?)\*\*/g, '');
+  
+  // Convert newlines to <br> tags
+  content = content.replace(/\n/g, '');
+  
+  // Convert numbered lists
+  content = content.replace(/(\d+\.\s.*?)(?=\n\d+\.|\n\n|$)/gs, '');
+  content = content.replace(/<li>.*?<\/li>/gs, (match) => ``);
+  
+  return content;
+};
+
   const connectWallet = async () => {
-    const contractAddress = abi.address;//"0x8264a7B7d02ab5eF1e57d0ad10110686D79d8d46"//"0x681a204B065604B2b2611D0916Dca94b992f0B41";//"0x61eFE56495356973B350508f793A50B7529FF978";
+    const contractAddress = "0x8264a7B7d02ab5eF1e57d0ad10110686D79d8d46"//"0x681a204B065604B2b2611D0916Dca94b992f0B41";//"0x61eFE56495356973B350508f793A50B7529FF978";
     const contractAbi = abi.abi;
     try {
       const { ethereum } = window;
@@ -107,6 +122,11 @@ const JobsAvailable = (props) => {
         setAccounts(all_accounts);
         console.log(all_accounts);
         console.log(all_jobs);
+        let query = `Recommend me the jobs I should take and focus on, based on the current market for jobs and my current skillset and also include what pay range that job provides, for this wallet address: ${account}`;
+        const newchat = await axios.post('http://localhost:8001/chatwithai', {query});
+        let newmsg = formatMessage(newchat.data)
+        setRecommendation(newmsg);
+        console.log(newchat.data);
         // Generate an array of random background colors
         const randombg = Array.from({ length: all_accounts.length }, () => randomColor());
         setRandomBg(randombg);
@@ -143,12 +163,16 @@ const JobsAvailable = (props) => {
             className="home-nav"
           >
             
+            <a href="/multiple" className="home-button2 button-clean button">
+              Multiple Transaction
+            </a>
             <a href="/portfolio" className="home-button2 button-clean button">
               Portfolio
             </a>
             <a href="/reputation" className="home-button2 button-clean button">
               Reputation
             </a>
+            
           </nav>
         </div>
         <div data-thq="thq-navbar-btn-group" className="home-btn-group">
@@ -213,18 +237,19 @@ const JobsAvailable = (props) => {
         </div>}
       </section>
       {isConnected && <label className='mint-btn button'>Total CredChain's Volume: {totalmints}
-      </label>}
+      </label> 
+      }
       {/* {isConnected && <label className='home-button7 button'>Total SBT's shared to your Account: {curr_endorsements_received} <br></br>
       Total SBT's shared by you: {curr_endorsements_given} <br></br>
       Total Reputation Score: {curr_reputation} <br></br>
       </label>} */}
 
-      
+<div className="charts-container">
 
-      {isConnected && <span className="reputation-txt">Job Demands Index</span>}
-      <div className="home-hero">
+      
+      <div className="home-hero chart-item">{isConnected && <span className="reputation-txt">Job Demands Index</span>}
       {showGraph &&  
-        <span className="reputation-txt">Job Opening Index</span>&&
+        
         <Line
       data={{ 
         // Name of the variables on x-axies for each bar 
@@ -267,11 +292,10 @@ const JobsAvailable = (props) => {
       }} 
     /> }
     </div>
-
-    {isConnected && <span className="reputation-txt">Job Opening Doughnut Chart</span>}
-    <div className="home-hero">
-
-    {showGraph && <span className="reputation-txt">Job Opening User score- Doughnut Chart</span> &&
+    &nbsp;
+    
+    <div className="home-hero chart-item">
+    {showGraph && 
     <Doughnut
     data={{
       labels: accounts,
@@ -300,8 +324,9 @@ const JobsAvailable = (props) => {
   />}
     </div>
 
-    {isConnected && <span className="reputation-txt">Skills Index</span>}
-    <div className="home-hero">
+    
+    <div className="home-hero chart-item">
+    <span className="reputation-txt">Skills Index</span>
     {showGraph && <span className="reputation-txt">Skills Index</span> &&
     <Pie
     data={{
@@ -331,7 +356,7 @@ const JobsAvailable = (props) => {
   />}
     </div>
 
-    <div className="leaderboard-container">
+    <div className="leaderboard-container chart-item">
       <h2 className="ld-title">LEADERBOARD</h2>
       <table className="leaderboard-table">
       <thead>
@@ -354,6 +379,17 @@ const JobsAvailable = (props) => {
       </tbody>
     </table>
 
+    </div>
+    </div>
+
+    <div className="home-container">
+      <ul className="flex-container">
+      <div className="home-card" style={{width: 900}}>
+      <li className="home-paragraph">{recommendation}
+      </li>
+      <br></br>
+      </div>
+    </ul>
     </div>
 
     {/* <form onSubmit={ChatwithData} className='login-container'>
