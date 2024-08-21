@@ -29,6 +29,7 @@ const App = () => {
         <Route component={ReputationSystem} exact path="/reputation" />
         <Route component={JobsAvailable} exact path="/jobsavailable" />
         <Route component={AI} exact path="/chatwithai" />
+        <Route component={Home} exact path="/test"/>
       </div>
       </AppProvider>
     </Router>

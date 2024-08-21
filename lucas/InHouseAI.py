@@ -13,7 +13,7 @@ router = APIRouter()
 # model = GPT2LMHeadModel.from_pretrained(model_name)
 # tokenizer = GPT2Tokenizer.from_pretrained(model_name,  clean_up_tokenization_spaces=True)
 # Load the model and tokenizer
-model_name = "gpt2"
+model_name = "gemini-pro"
 model = GPT2LMHeadModel.from_pretrained(model_name)
 tokenizer = GPT2Tokenizer.from_pretrained(model_name, clean_up_tokenization_spaces=True)
 

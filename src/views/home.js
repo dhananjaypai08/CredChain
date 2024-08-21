@@ -11,7 +11,7 @@ import axios from "axios";
 
 import "./home.css";
 import Loginsystem from "./login";
-import Share from "./Share";
+import Endorse from "./Endorse";
 import { useAppContext } from "../AppContext";
 import Footer from "./Footer";
 
@@ -293,7 +293,7 @@ const Home = (props) => {
       </ul>}
       
       {isConnected && <><label className='mint-btn'>Total CredChain's Minting Volume: {totalmints}
-      </label> <label className='mint-btn'>Total CredChain's Shared Volume: {total_endorsements}</label><br></br></>}
+      </label> <label className='mint-btn'>Total CredChain's Endorsed Volume: {total_endorsements}</label><br></br></>}
       {isConnected && admin && <Loginsystem></Loginsystem>}
       <section className="home-hero">
       
@@ -325,8 +325,8 @@ const Home = (props) => {
           <li className="home-paragraph">{nft.name}: <br></br>{nft.description}
           <img src={nft.image} className="home-image06" ></img>
           </li>
-          {ipfs_hash !== get_nft_cids[index] && <button className='home-button6 button' onClick={() => handleButtonClick(index)}>Share</button>}
-          {ipfs_hash == get_nft_cids[index] && <Share passedValue={ipfs_hash} data={selectedData}></Share>}
+          {ipfs_hash !== get_nft_cids[index] && <button className='home-button6 button' onClick={() => handleButtonClick(index)}>Endorse</button>}
+          {ipfs_hash == get_nft_cids[index] && <Endorse passedValue={ipfs_hash} data={selectedData}></Endorse>}
           </div>
           </>
         ))}</span>
@@ -334,7 +334,7 @@ const Home = (props) => {
     </div>}
     
     {isConnected && <div className="home-container">
-      <label className='home-button6 button'>CredChain SBT's shared to your account
+      <label className='home-button6 button'>CredChain SBT's Endorsed to your account
       </label>
         <ul>{fetched_nftdata && 
         endorsed_mints.map((nft, index) => (

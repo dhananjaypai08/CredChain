@@ -7,6 +7,8 @@ from config import Node, Contract, Google
 import uvicorn
 from middleware.TimeMiddleware import TimeMiddleware
 from fastapi.middleware.cors import CORSMiddleware
+# from fastapi import BackgroundTasks 
+from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
 #langchain
 # from langchain.llms import HuggingFaceHub
 # from langchain.prompts import PromptTemplate
@@ -74,11 +76,13 @@ skills = [
     "git",
     "javascript",
     "full stack web development",
-    "ai"
+    "ai",
+    "system design"
 ]
 jobs_available = {
     "python": 100,
     "java": 75,
+    "system design": 55,
     "c++": 50,
     "git": 25,
     "javascript": 40,
@@ -87,6 +91,32 @@ jobs_available = {
 }
 pattern = "|".join(re.escape(p) for p in skills)
 knowledge_base = defaultdict(list)
+
+conf = ConnectionConfig(
+    MAIL_USERNAME = "dhananjay2002pai@gmail.com",
+    MAIL_PASSWORD = "mxfzvwcytedlfewf",
+    MAIL_FROM = "dhananjay2002pai@gmail.com",
+    MAIL_PORT = 587,
+    MAIL_SERVER = "smtp.gmail.com",
+    MAIL_STARTTLS = True,
+    MAIL_SSL_TLS = False,
+    MAIL_FROM_NAME = "CredChain"
+)
+
+async def sendmail(email: str):
+    html = f"""<p>Hi \n
+                Please connect with this hiring recruiter, He came across your profile on CredChain and found it interesting. Please send your CV to this mail with Reasoning : {email} \n\n\n
+                Thanks and Regards,\n\n
+                DJ
+            </p> """
+    message = MessageSchema(
+        subject="Connect with Hiring Recruiter - CredChain",
+        recipients=["2020.dhananjay.pai@ves.ac.in"],
+        body=html,
+        subtype=MessageType.html)
+    fm = FastMail(conf)
+    await fm.send_message(message)
+    return True
 
 async def read_json():
     file = open(contract.abi_path)
@@ -349,6 +379,17 @@ async def chatwithai(request: Request):
     if "graph" in tokens or "chart" in tokens or "plot" in tokens or "show" in tokens:
         plotData(query)
         return "Plotted"
+    elif "ping" in tokens or "mail" in tokens:
+        if "ping" in tokens:
+            ind = tokens.index("mail")
+            email = tokens[ind+1]
+            res = await sendmail(email)
+            return "Mail sent"
+        else:
+            ind = tokens.index("at")
+            email = tokens[ind+1]
+            res = await sendmail(email)
+            return "Mail sent"
     else:
         print(AGENT_DATA)
         preprocessed_query = f"Web3 data: {AGENT_DATA} | User query: {query}. Give the links of courses from different sources. For ex: Udemy/Coursers course on that particular skillset he needs to upskill himself in and provide a concrete reasoning as to why he needs to upskill in that field. The wallet address in the query should match any one in the 'User or Wallet Address' field in the dictionary mapping. For ex: Wallet Address in the list at index 1 means that the count of certificates of user in python is the count at 'Python[1]' in the data.Generate the text in plain text format without '*' and without new lines."
