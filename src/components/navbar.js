@@ -17,10 +17,9 @@ const Navbar = (props) => {
       <a className="navbar-text1 home-button2 button-clean button" href="/">CredChain</a>
       <div className="navbar-nav-content">
         <div className="navbar-nav-links">
-          <a className="navbar-text home-button2 button-clean button" href="/portfolio">Portfolio</a>
-          <a className="navbar-text home-button2 button-clean button" href="/multiple">Multiple Issuance</a>
-          <a className="navbar-text home-button2 button-clean button" href="/reputation">Reputation</a>
-          <a className="navbar-text home-button2 button-clean button" href="/jobsavailable">Credentials Index</a>
+          <a className="navbar-text home-button2 button-clean button" href="/portfolio">Portfolio(User)</a>
+          <a className="navbar-text home-button2 button-clean button" href="/multiple">Multiple Transaction(Admin)</a>
+          <a className="navbar-text home-button2 button-clean button" href="/jobsavailable">Competitive Profile</a>
         </div>
         
         <div id="open-mobile-menu" className="navbar-hamburger get-started">

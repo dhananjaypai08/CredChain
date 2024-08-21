@@ -19,14 +19,14 @@ const AI = () => {
   const formatMessage = (content) => {
     // Convert ** to <strong> tags
     content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    
+
     // Convert newlines to <br> tags
     content = content.replace(/\n/g, '<br>');
-    
+
     // Convert numbered lists
-    content = content.replace(/(\d+\.\s.*?)(?=\n\d+\.|\n\n|$)/gs, '<li>$1</li>');
-    content = content.replace(/<li>.*?<\/li>/gs, (match) => `<ol>${match}</ol>`);
-    
+    content = content.replace(/(\d+\.\s.*?)(?=\n\d+\.|\n\n|$)/gs, '<ol><li>$1</li></ol>');
+    content = content.replace(/<\/li>\n<li>/g, '</li><li>');
+
     return content;
   };
 
@@ -34,17 +34,20 @@ const AI = () => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    setMessages(prev => [...prev, { type: 'user', content: input }]);
+    setMessages((prev) => [...prev, { type: 'user', content: input }]);
     setInput('');
     setIsLoading(true);
 
     try {
       const response = await axios.post('http://127.0.0.1:8001/chatwithai', { query: input });
       const formattedResponse = formatMessage(response.data);
-      setMessages(prev => [...prev, { type: 'bot', content: formattedResponse }]);
+      setMessages((prev) => [...prev, { type: 'bot', content: formattedResponse }]);
     } catch (error) {
       console.error('Error fetching response:', error);
-      setMessages(prev => [...prev, { type: 'bot', content: 'Sorry, there was an error processing your request.' }]);
+      setMessages((prev) => [
+        ...prev,
+        { type: 'bot', content: 'Sorry, there was an error processing your request.' },
+      ]);
     } finally {
       setIsLoading(false);
     }
@@ -52,23 +55,22 @@ const AI = () => {
 
   return (
     <div className="chat-container">
-      <Navbar rootClassName="navbar-root-class-name"></Navbar>
+      <Navbar></Navbar>
       <div className="messages-container">
         {messages.map((message, index) => (
-          <div key={index} className={`message ${message.type}`}>
-            <div className="message-content">
-              {message.type === 'user' ? (
-                <p>{message.content}</p>
-              ) : (
-                <div dangerouslySetInnerHTML={{ __html: message.content }} />
-              )}
-            </div>
-          </div>
+          <div
+            key={index}
+            className={`message ${message.type}`}
+            dangerouslySetInnerHTML={{ __html: message.content }}
+          />
         ))}
-        {isLoading && <div className="loading">Loading...</div>}
-        <div ref={messagesEndRef} />
+        {isLoading && (
+          <div className="loading">
+            Loading...
+          </div>
+        )}
       </div>
-      <form onSubmit={handleSubmit} className="input-form">
+      <form className="input-form" onSubmit={handleSubmit}>
         <input
           type="text"
           value={input}
@@ -77,9 +79,10 @@ const AI = () => {
           className="message-input"
         />
         <button type="submit" className="send-button">
-          <Send size={24} />
+          <Send />
         </button>
       </form>
+      <div ref={messagesEndRef} />
     </div>
   );
 };

@@ -11,6 +11,7 @@ import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 import "./home.css";
 import { useAppContext } from "../AppContext";
 import Footer from "./Footer";
+import ReputationSystem from "./ReputationSystem";
 
 const JobsAvailable = (props) => {
   const { state, setState } = useAppContext()
@@ -164,15 +165,11 @@ const formatMessage = (content) => {
           >
             
             <a href="/multiple" className="home-button2 button-clean button">
-              Multiple Transaction
+              Multiple Transaction(Admin)
             </a>
             <a href="/portfolio" className="home-button2 button-clean button">
-              Portfolio
+              Portfolio(User)
             </a>
-            <a href="/reputation" className="home-button2 button-clean button">
-              Reputation
-            </a>
-            
           </nav>
         </div>
         <div data-thq="thq-navbar-btn-group" className="home-btn-group">
@@ -381,6 +378,8 @@ const formatMessage = (content) => {
 
     </div>
     </div>
+
+    <ReputationSystem></ReputationSystem>
 
     <div className="home-container">
       <ul className="flex-container">

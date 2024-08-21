@@ -322,25 +322,46 @@ const Multiple = () => {
           <div data-thq="thq-close-menu" className="home-caption01">SBT has been SENT!
           </div>
           }
-          {authorized == 1 &&
-            <form onSubmit={SendSBT}>
-              <label className='home-links' style={{color: "white"}}>Upload CSV file</label>
-              <input type="file" id="file" className='home-button6 button' onChange={handleCsvSelect}></input>
-              <br></br><br></br>
-              <label className='home-links' style={{color: "white"}}>Upload Image</label>
-              <input type="file" id="image" className='home-button6 button' onChange={handlePhotoSelect}></input>
-              <br></br><br></br>
-              {/* <label className='home-links' style={{color: "white"}}>Upload CSV</label>
-              <input type="file" id="image" className='home-button7 button' onChange={handleCsv}></input> */}
-              
-              <button type="submit" className='home-button6 button'>Send SBT</button>
-              {loader &&  <div><label className='home-links' style={{color: "white"}}>Minting SBT's in progress...</label><div className="loader"></div></div>}
-             
-            </form>
-          }
+          {authorized === 1 && (
+        <form onSubmit={SendSBT}>
+          <label className="home-links" style={{ color: "white" }}>
+            Upload CSV file
+          </label>
+          <input
+            type="file"
+            id="file"
+            className="home-button6 button"
+            onChange={handleCsvSelect}
+          />
+          <br />
+          <br />
+          <label className="home-links" style={{ color: "white" }}>
+            Upload Image
+          </label>
+          <input
+            type="file"
+            id="image"
+            className="home-button6 button"
+            onChange={handlePhotoSelect}
+          />
+          <br />
+          <br />
+          <button type="submit" className="home-button6 button">
+            Send SBT
+          </button>
+          {loader && (
+            <div className="loader-container">
+              <div className="loader"></div>
+              <p className="home-links" style={{ color: "white" }}>
+                Minting SBT's in progress...
+              </p>
+            </div>
+          )}
+        </form>
+      )}
           
           <section className="home-description">
-            <div className='EmptySpace'></div>
+            {/* <div className='EmptySpace'></div> */}
             {!isConnected && <h1 className="home-header">Please connect Wallet.</h1>}
             <img
               alt="image"

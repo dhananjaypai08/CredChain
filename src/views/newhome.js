@@ -41,7 +41,7 @@ const NewHome = (props) => {
         <div className="home-hero">
           <div className="home-content">
             <main className="home-main">
-              <header className="home-header">
+              <header className="home-header" style={{alignItems: "center"}}>
                 <h1 className="home-heading">
                   We help users upskill in the right direction
                 </h1>
@@ -49,20 +49,24 @@ const NewHome = (props) => {
                   Issue, Verify, Upskill and get Visibility
                 </span>
               </header>
+              
               <div className="home-buttons">
-                <div className="home-get-started button">
+              
+                <div className="home-button6 button">
                   <a className="home-text" href="/multiple">Organization/Admin</a>
                 </div>
-                <div className="home-get-started button">
+                <div className="home-button6 button">
                   <a className="home-text" href="/reputation">Users</a>
                 </div>
-                <div className="home-get-started button">
+                <div className="home-button6 button button">
                   <a className="home-text" href="/chatwithai">Chat With AI</a>
                 </div>
               </div>
             </main>
             <div className="home-highlight">
+            
               <div className="home-avatars">
+              
                 {/* <img
                   alt="image"
                   src="https://images.unsplash.com/photo-1552234994-66ba234fd567?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDN8fHBvdHJhaXR8ZW58MHx8fHwxNjY3MjQ0ODcx&amp;ixlib=rb-4.0.3&amp;w=200"
@@ -84,81 +88,30 @@ const NewHome = (props) => {
               </label> */}
             </div>
           </div>
-                
-          <div className="home-image03">
+          {/* <div className="home-image03">
           
             <img
               alt="image"
               src="https://tse1.mm.bing.net/th?id=OIP.qnHDFJR7ou9kFrqFBPvYJwHaF6&pid=Api"
               className="home-image04"
             />
-          </div>
-          <div className="home-image05">
-            {/* <img
-              alt="image"
-              src="/SectionImages/heroimage-1500h.png"
-              className="home-image06"
-            /> */}
-          </div>
+          </div> */}
+          
         </div>
       </section>
-      <section>
-      <button className='home-button6 button' onClick={() => Verify()}>Verify Credentials/Proofs</button>
-      {verified!==undefined && <ul className="home-cards">
-      {verified==true &&
-      <div className="home-card">
-          <li className="home-paragraph">The NFT with tokenId: {verifiedURI} is <h3>verified</h3>
-          Name: {verifiedData["name"]} <br></br> Description: {verifiedData["description"]} <br></br> TokenId: {verifiedData["tokenId"]}
-          <img src={verifiedData["image"]} className="home-image05" ></img>
-          </li>
-      </div>
-      }
-      {verified==false &&
-      <div className="home-card" style={{width: 700}}>
-          <li className="home-paragraph">The NFT with Hash: {verifiedURI} is <h3>NOT Verified</h3>
-          </li>
-      </div>
-      }
-      </ul>}
-      </section>
-      <section>
-        
-        <section>
-          
-          
-        </section>
-        <section>
-          
-          
-        </section>
-      </section>
-      <section>
-        
-      </section>
-      <section>
-        
-      </section>
-      <section >
-        
-      </section>
-      <section>
-        
-        {/* <main className="home-pricing">
-          
-          
-        </main> */}
-      </section>
-      <section >
-        
-       
-      </section>
-      <section>
-        
+      <section className="home-card">
+            {/* <div className='EmptySpace'></div> */}
+            <img
+              alt="image"
+              src="/hero-divider-1500w.png"
+              // className="home-divider-image"
+            />
+            
       </section>
       
-      <section className="home-section18">
+      {/* <section className="home-section18">
         Connecting worlds
-      </section>
+      </section> */}
       <Footer></Footer>
     </div>
   )

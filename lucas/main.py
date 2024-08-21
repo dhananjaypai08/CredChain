@@ -31,6 +31,7 @@ from collections import defaultdict
 import os
 from dotenv import load_dotenv
 # import InHouseAI
+from langdetect import detect
 
 load_dotenv()
 
@@ -111,7 +112,7 @@ async def sendmail(email: str):
             </p> """
     message = MessageSchema(
         subject="Connect with Hiring Recruiter - CredChain",
-        recipients=["2020.dhananjay.pai@ves.ac.in"],
+        recipients=["dhananjay2002pai@gmail.com"],
         body=html,
         subtype=MessageType.html)
     fm = FastMail(conf)
@@ -209,7 +210,7 @@ async def home(id: str):
     return ans
 
 @app.get("/endorsements_received")
-async def home(id: str):
+async def homeb(id: str):
     ids = await contractwithsigner.functions.getTokenIdAccountEndorsing(id).call()
     print("Data Retrieved")
     ans = []
@@ -319,7 +320,7 @@ async def scanQR():
 @app.post("/getCasualInsights")
 async def getInsights(data: list = Body(...)):
     if not data: return "Add something to your certificates List"
-    response = model.generate_content("Generate text which should be strictly less 100 words limit and Make sure the generated text is in plain string text and should be without any '*' or neither any other such characters for designing. Generate text about casual Granular statistical overview Insights on this user data which signifies all the certificates earned in a particular field by that user : "+str(data)+". The text should contain this data for eg: x percent proficient in y field(example: 50% proficient in python with 2 certificates in python) and the total words of generated words is less than or equal to 100 words.")
+    response = model.generate_content("Generate text which should be strictly less 100 words limit and Make sure the generated text is in plain string text and should be without any '*' or neither any other such characters for designing. Generate text about casual Granular statistical overview Insights on this user data which signifies all the certificates earned in a particular field by that user : "+str(data)+". The text should contain this data for eg: x percent proficient in y field based on the total certificates and their diversification and the total words of generated words is less than or equal to 100 words.")
     return response.text
 
 @app.get("/getJobs")
@@ -375,6 +376,11 @@ def getChat(query:str):
 async def chatwithai(request: Request):
     body = await request.json()
     query = body["query"].lower()
+    language = detect(query)
+    if language == "hi": language = "hindi"
+    elif language == "mr": language = "marathi"
+    else: language = "english"
+    query += f". Provide the answer in {language} language"
     tokens = query.split()
     if "graph" in tokens or "chart" in tokens or "plot" in tokens or "show" in tokens:
         plotData(query)
@@ -390,6 +396,10 @@ async def chatwithai(request: Request):
             email = tokens[ind+1]
             res = await sendmail(email)
             return "Mail sent"
+    elif "marathi" in tokens or "hindi" in tokens:
+        if "marathi" in tokens: query += ". Provide the entire response text in marathi"
+        else: query += ". Provide the entire response text in hindi"
+        return model.generate_content(query).text
     else:
         print(AGENT_DATA)
         preprocessed_query = f"Web3 data: {AGENT_DATA} | User query: {query}. Give the links of courses from different sources. For ex: Udemy/Coursers course on that particular skillset he needs to upskill himself in and provide a concrete reasoning as to why he needs to upskill in that field. The wallet address in the query should match any one in the 'User or Wallet Address' field in the dictionary mapping. For ex: Wallet Address in the list at index 1 means that the count of certificates of user in python is the count at 'Python[1]' in the data.Generate the text in plain text format without '*' and without new lines."

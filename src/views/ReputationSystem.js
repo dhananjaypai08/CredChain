@@ -113,7 +113,7 @@ const ReputationSystem = (props) => {
 
   return (
     <div className="home-container">
-      <Helmet>
+      {/* <Helmet>
         <title>Reputation</title>
         <meta property="og:title" content="Dashboard" />
       </Helmet>
@@ -195,10 +195,13 @@ const ReputationSystem = (props) => {
             </svg>
           </div>
         </div>
-      </header>
+      </header> */}
       <section className="home-hero">
-        
+      
       {!isConnected && <div className="EmptySpace">
+        <button onClick={checkConnectionBeforeConnecting} className="home-button6 button">
+            {connectmsg}
+          </button>
         <h1 className="home-header">Please connect Wallet.</h1>
         </div>}
       </section>
@@ -278,20 +281,7 @@ const ReputationSystem = (props) => {
 
     </div>
 
-      <section className="home-description">
-        <img
-          alt="image"
-          src="/hero-divider-1500w.png"
-          className="home-divider-image"
-        />
-      </section>
-
-      <Footer></Footer>
-      <div>
-        <Script>
-          
-        </Script>
-      </div>
+      
     </div>
   );
 };
