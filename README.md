@@ -1,5 +1,5 @@
 # CredChain
-  - Decentralized Certification Authority and Reputation system for Revolutionizing job market
+  - Decentralized protocol for helping users upskill in the right direction by leveraging Non-transferrable NFT and generative AI
 
 ## Demo Link:
 [https://www.youtube.com/watch?v=reynJr34Qrw](https://www.youtube.com/watch?v=reynJr34Qrw)
