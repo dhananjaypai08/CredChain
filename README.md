@@ -1,5 +1,5 @@
 # CredChain
-  - Decentralized protocol for helping users upskill in the right direction by leveraging Non-transferrable NFT and generative AI
+  - Decentralized protocol for helping users upskill in the right direction
 
 ## Demo Link:
 [https://www.youtube.com/watch?v=reynJr34Qrw](https://www.youtube.com/watch?v=reynJr34Qrw)
