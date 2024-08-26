@@ -1,6 +1,6 @@
 # CredChain
   - Decentralized protocol for helping users upskill in the right direction by leveraging generative AI, ERC5192 token and the `Open Campus Codex` network
-  - A secure, tamper-proof and real-time way of upskilling and recruiting
+  - A secure, tamper-proof and real-time way of upskilling in right path and recruiting the best candidates by using `Natural language prompts`
 
 ## Deployment on EduChain
 Our Soul Bound Token(ERC5192) is live on the opencampus codex network 
